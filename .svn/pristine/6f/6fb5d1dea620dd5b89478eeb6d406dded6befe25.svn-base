@@ -1,0 +1,30 @@
+package com.didi365.carlife.android.phone.receiver;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+
+/**
+ * Created by zheng on 2019/3/27
+ */
+public class UsbDetachedReceiver extends BroadcastReceiver {
+
+    private UsbDetachedListener mUsbDetachedListener;
+
+    public UsbDetachedReceiver(UsbDetachedListener usbDetachedListener) {
+        mUsbDetachedListener = usbDetachedListener;
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        if (mUsbDetachedListener != null) {
+            mUsbDetachedListener.usbDetached();
+        }
+    }
+
+    public interface UsbDetachedListener {
+
+        void usbDetached();
+
+    }
+}

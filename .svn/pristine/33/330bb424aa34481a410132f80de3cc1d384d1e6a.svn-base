@@ -1,0 +1,559 @@
+package com.didi365.carlife.android.phone.connect;
+
+import android.content.Context;
+import android.os.SystemClock;
+
+import com.baidu.carlife.protobuf.CarlifeProtocolVersionMatchStatusProto;
+import com.baidu.carlife.protobuf.CarlifeVideoEncoderInfoProto.CarlifeVideoEncoderInfo;
+import com.didi365.carlife.android.phone.CarlifePhoneApplication;
+import com.didi365.carlife.android.phone.logic.CarlifeDeviceInfoManager;
+import com.didi365.carlife.android.phone.logic.CarlifeProtocolVersionInfoManager;
+import com.didi365.carlife.android.phone.message.MsgHandlerCenter;
+import com.didi365.carlife.android.phone.model.ModuleStatusModel;
+import com.didi365.carlife.android.phone.util.AudioPlayerUtil;
+import com.didi365.carlife.android.phone.util.ByteConvert;
+import com.didi365.carlife.android.phone.util.CarlifeUtil;
+import com.didi365.carlife.android.phone.util.CommonParams;
+import com.didi365.carlife.android.phone.util.DecodeUtil;
+import com.didi365.carlife.android.phone.util.DigitalTrans;
+import com.didi365.carlife.android.phone.util.LogUtil;
+import com.google.protobuf.InvalidProtocolBufferException;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+/**
+ * Created by zheng on 2019/3/29
+ */
+public class AOAConnectManager {
+
+    private final static String TAG = AOAConnectManager.class.getSimpleName();
+
+    private static final String AOA_CONNECT_THREAD_NAME = "AOAConnectThread";
+    private static final String AOA_READ_THREAD_NAME = "AOAReadThread";
+    private static final String SOCKET_READ_THREAD_NAME = "SocketReadThread";
+    private static final int LEN_OF_MSG_HEAD = 8;
+    private static final int SLEEP_TIME_MS = 500;
+
+    private static final int SEND_BUFFER_SIZE = 320 * 1024;
+    private static final int RECEIVE_BUFFER_SIZE = 320 * 1024;
+
+    private static final int AOA_MAX_BYTES = 64 * 1024 * 1024;
+
+    public static long mTimeConnectStart = 0;
+    public static long mTimeConnectFinish = 0;
+
+    private static AOAConnectManager mInstance = null;
+    private Context mContext;
+
+    private AOAConnectThread mAOAConnectThread = null;
+    private AOAReadThread mAOAReadThread = null;
+
+    private SocketReadThread mSocketReadThread = null;
+    private SocketReadThread mSocketReadVideoThread = null;
+
+    private AOAConnectManager() {
+    }
+
+    public static AOAConnectManager getInstance() {
+        if (null == mInstance) {
+            synchronized (AOAConnectManager.class) {
+                if (null == mInstance) {
+                    mInstance = new AOAConnectManager();
+                }
+            }
+        }
+        return mInstance;
+    }
+
+    public void init(Context context) {
+        LogUtil.e(TAG, "init");
+        mContext = context;
+        AOAAccessorySetup.getInstance().init(mContext);
+    }
+
+    public void unInit() {
+        LogUtil.e(TAG, "unInit");
+        stopAOAReadThread();
+        stopSocketReadThread();
+        AOAAccessorySetup.getInstance().unInit();
+    }
+
+    public void writeCmdData(byte[] data, int len) {
+        if (mSocketReadThread != null) {
+            mSocketReadThread.writeData(data, 0, len);
+        }
+    }
+
+    public void writeVideoData(byte[] data, int len) {
+        if (mSocketReadVideoThread != null) {
+            mSocketReadVideoThread.writeData(data, 0, len);
+        }
+    }
+
+    public void startSocketReadThread() {
+        try {
+            mSocketReadThread = new SocketReadThread(CommonParams.SOCKET_LOCALHOST_PORT, CommonParams.SERVER_SOCKET_NAME);
+            mSocketReadThread.start();
+
+            mSocketReadVideoThread = new SocketReadThread(CommonParams.SOCKET_VIDEO_LOCALHOST_PORT, CommonParams.SERVER_SOCKET_VIDEO_NAME);
+            mSocketReadVideoThread.start();
+        } catch (Exception e) {
+            LogUtil.e(TAG, "Start SocketRead Thread Fail");
+            e.printStackTrace();
+        }
+    }
+
+    public void stopSocketReadThread() {
+        try {
+            if (null != mSocketReadThread) {
+                mSocketReadThread.cancel();
+                mSocketReadThread = null;
+            }
+
+            if (null != mSocketReadVideoThread) {
+                mSocketReadVideoThread.cancel();
+                mSocketReadVideoThread = null;
+            }
+        } catch (Exception e) {
+            LogUtil.e(TAG, "Stop SocketRead Thread Fail");
+            e.printStackTrace();
+        }
+    }
+
+    public void startAOAConnectThread() {
+        try {
+            mAOAConnectThread = new AOAConnectThread();
+            mAOAConnectThread.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void stopAOAConnectThread() {
+        LogUtil.e(TAG, "stopAOAConnectThread");
+        try {
+            mAOAConnectThread.cancel();
+            mAOAConnectThread = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void startAOAReadThread() {
+        try {
+            mAOAReadThread = new AOAReadThread();
+            mAOAReadThread.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void stopAOAReadThread() {
+        try {
+            if (mAOAReadThread != null) {
+                mAOAReadThread.cancel();
+                mAOAReadThread = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private class AOAConnectThread extends Thread {
+        private boolean isRunning = false;
+
+        public AOAConnectThread() {
+            LogUtil.e(TAG, "AOAConnectThread Created");
+            isRunning = true;
+            setName(AOA_CONNECT_THREAD_NAME);
+        }
+
+        public void cancel() {
+            isRunning = false;
+            LogUtil.e(TAG, "AOAConnectThread cancel isRunning " + isRunning);
+        }
+
+        @Override
+        public void run() {
+            isRunning = true;
+            LogUtil.e(TAG, "Begin to connect carlife by AOA " + isRunning);
+            try {
+                while (true) {
+                    if (!isRunning) {
+                        LogUtil.e(TAG, "Carlife Connect Cancled");
+                        return;
+                    }
+                    mTimeConnectStart = SystemClock.elapsedRealtime();
+                    if (AOAAccessorySetup.getInstance().scanUsbDevices()) {
+                        LogUtil.e(TAG, "Carlife AOA connect successed");
+                        break;
+                    }
+                    sleep(SLEEP_TIME_MS);
+                }
+            } catch (Exception e) {
+                LogUtil.e(TAG, "Exception when connect carlife by AOA");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    //read data from aoa and write to tcp server
+    private class AOAReadThread extends Thread {
+        private boolean isRunning = false;
+
+        private byte[] msg = new byte[LEN_OF_MSG_HEAD];
+        private byte[] msgHead = new byte[LEN_OF_MSG_HEAD];
+        private int typeMsg = -1;
+        private int lenMsg = -1;
+        private int ret = -1;
+
+        public AOAReadThread() {
+            LogUtil.e(TAG, "AOAReadThread Created");
+            setName(AOA_READ_THREAD_NAME);
+        }
+
+        public void cancel() {
+            isRunning = false;
+        }
+
+        @Override
+        public void run() {
+            isRunning = true;
+            LogUtil.e(TAG, "Begin to read data by AOA");
+            try {
+                while (isRunning) {
+                    if (!isRunning) {
+                        LogUtil.e(TAG, "read data cancled");
+                        return;
+                    }
+                    ret = AOAAccessorySetup.getInstance().bulkTransferIn(msgHead, LEN_OF_MSG_HEAD);
+                    if (ret < 0) {
+                        LogUtil.e(TAG, "bulkTransferIn fail 1");
+                        break;
+                    } else if (ret == 0) {
+                        continue;
+                    }
+                    typeMsg = ByteConvert.bytesToInt(new byte[]{msgHead[0], msgHead[1], msgHead[2], msgHead[3]});
+                    lenMsg = ByteConvert.bytesToInt(new byte[]{msgHead[4], msgHead[5], msgHead[6], msgHead[7]});
+                    LogUtil.e(TAG, "typeMsg = " + typeMsg + ", lenMsg = " + lenMsg);
+
+                    LogUtil.e(TAG, "MSG_CHANNEL HEAD " + ByteConvert.printHexString(msgHead, LEN_OF_MSG_HEAD));
+
+                    if (typeMsg < 1 || typeMsg > 6 || lenMsg < 8 || lenMsg > AOA_MAX_BYTES) {
+                        LogUtil.e(TAG, "typeMsg or lenMsg is error");
+                        break;
+                    }
+                    msg = new byte[LEN_OF_MSG_HEAD];
+                    if (msg.length < lenMsg) {
+                        msg = new byte[lenMsg];
+                    }
+
+                    if (AOAAccessorySetup.getInstance().bulkTransferIn(msg, lenMsg) < 0) {
+                        LogUtil.e(TAG, "bulkTransferIn fail 2");
+                        break;
+                    }
+                    switch (typeMsg) {
+                        case CommonParams.MSG_CHANNEL_ID:
+                            LogUtil.e(TAG, "MSG_CHANNEL_ID MSG " + ByteConvert.printHexString(msg, msg.length));
+                            ConnectManager.getInstance().writeCmdData(msg, lenMsg);
+                            break;
+                        case CommonParams.MSG_CHANNEL_ID_VIDEO:
+//                            mSocketReadVideoThread.writeData(msg, 0, lenMsg);
+                            ConnectManager.getInstance().writeVideoData(msg, lenMsg);
+                            break;
+                        case CommonParams.MSG_CHANNEL_ID_AUDIO:
+//                            mSocketReadAudioThread.writeData(msg, 0, lenMsg);
+                            ConnectManager.getInstance().writeAudioData(msg, lenMsg);
+                            break;
+                        case CommonParams.MSG_CHANNEL_ID_AUDIO_TTS:
+//                            mSocketReadAudioTTSThread.writeData(msg, 0, lenMsg);
+                            ConnectManager.getInstance().writeAudioTTSData(msg, lenMsg);
+                            break;
+                        case CommonParams.MSG_CHANNEL_ID_AUDIO_VR:
+//                            mSocketReadAudioVRThread.writeData(msg, 0, lenMsg);
+                            break;
+                        case CommonParams.MSG_CHANNEL_ID_TOUCH:
+//                            mSocketReadTouchThread.writeData(msg, 0, lenMsg);
+                            break;
+                        default:
+                            LogUtil.e(TAG, "AOAReadThread typeMsg error");
+                            break;
+                    }
+                }
+            } catch (Exception e) {
+                LogUtil.e(TAG, "Exception when read data by AOA");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private static void dumpData(String tag, CarlifeCmdMessage carlifeMsg) {
+        String msg = "";
+        try {
+            msg += "index = " + Integer.toString(carlifeMsg.getIndex());
+            msg += ", length = " + Integer.toString(carlifeMsg.getLength());
+            msg += ", service_type = 0x" + DigitalTrans.algorismToHEXString(carlifeMsg.getServiceType(), 8);
+            msg += ", name = " + CommonParams.getMsgName(carlifeMsg.getServiceType());
+            LogUtil.e(TAG, "[" + tag + "]" + msg);
+        } catch (Exception e) {
+            LogUtil.e("TAG", "dumpData get Exception");
+            e.printStackTrace();
+        }
+    }
+
+    //socket server to listen client
+    private class SocketReadThread extends Thread {
+        private ServerSocket mServerSocket = null;
+        private boolean isRunning = false;
+        private int mSocketPort = -1;
+        private String mSocketName = null;
+        private String mThreadName = null;
+
+        private Socket mSocket = null;
+        private BufferedInputStream mInputStream = null;
+        private BufferedOutputStream mOutputStream = null;
+
+        private int lenMsgHead = -1;
+        private int lenMsgData = -1;
+        private int lenMsg = -1;
+
+        private byte[] msg = new byte[CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE];
+        private byte[] head = new byte[LEN_OF_MSG_HEAD];
+
+        public SocketReadThread(int port, String name) {
+            try {
+                mThreadName = name + SOCKET_READ_THREAD_NAME;
+                setName(mThreadName);
+                mSocketPort = port;
+                mSocketName = name;
+                LogUtil.e(TAG, "Create " + mThreadName + " " + mSocketPort);
+
+                mServerSocket = new ServerSocket(mSocketPort);
+                isRunning = true;
+
+                if (mSocketName.equals(CommonParams.SERVER_SOCKET_NAME)) {
+                    System.arraycopy(ByteConvert.intToBytes(CommonParams.MSG_CHANNEL_ID), 0, head, 0, 4);
+                } else if (mSocketName.equals(CommonParams.SERVER_SOCKET_VIDEO_NAME)) {
+                    System.arraycopy(ByteConvert.intToBytes(CommonParams.MSG_CHANNEL_ID_VIDEO), 0, head, 0, 4);
+                } else if (mSocketName.equals(CommonParams.SERVER_SOCKET_AUDIO_NAME)) {
+                    System.arraycopy(ByteConvert.intToBytes(CommonParams.MSG_CHANNEL_ID_AUDIO), 0, head, 0, 4);
+                } else if (mSocketName.equals(CommonParams.SERVER_SOCKET_AUDIO_TTS_NAME)) {
+                    System.arraycopy(ByteConvert.intToBytes(CommonParams.MSG_CHANNEL_ID_AUDIO_TTS), 0, head, 0, 4);
+                } else if (mSocketName.equals(CommonParams.SERVER_SOCKET_AUDIO_VR_NAME)) {
+                    System.arraycopy(ByteConvert.intToBytes(CommonParams.MSG_CHANNEL_ID_AUDIO_VR), 0, head, 0, 4);
+                } else if (mSocketName.equals(CommonParams.SERVER_SOCKET_TOUCH_NAME)) {
+                    System.arraycopy(ByteConvert.intToBytes(CommonParams.MSG_CHANNEL_ID_TOUCH), 0, head, 0, 4);
+                }
+            } catch (Exception e) {
+                LogUtil.e(TAG, "Create " + mThreadName + " fail " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+
+        public void cancel() {
+            try {
+                if (null != mServerSocket) {
+                    mServerSocket.close();
+                }
+                if (null != mSocket) {
+                    mSocket.close();
+                    mSocket = null;
+                }
+                if (null != mInputStream) {
+                    mInputStream.close();
+                    mInputStream = null;
+                }
+                if (null != mOutputStream) {
+                    mOutputStream.close();
+                    mOutputStream = null;
+                }
+
+                isRunning = false;
+            } catch (Exception e) {
+                LogUtil.e(TAG, "Close " + mThreadName + " fail");
+                e.printStackTrace();
+            }
+        }
+
+        public int readData(byte[] buffer, int offset, int len) {
+            int r = -1;
+            try {
+                if (null != mInputStream) {
+                    int cnt;
+
+                    cnt = len;
+                    int dataLen = 0;
+                    while (cnt > 0) {
+                        r = mInputStream.read(buffer, offset + dataLen, cnt);
+                        if (r > 0) {
+                            cnt -= r;
+                            dataLen += r;
+                        } else {
+                            LogUtil.e(TAG, mSocketName + " Receive Data Error: ret = " + r);
+                            throw new IOException();
+                        }
+                    }
+                    if (dataLen != len) {
+                        LogUtil.e(TAG, mSocketName + " Receive Data Error: dataLen = " + dataLen);
+                        throw new IOException();
+                    }
+                    return dataLen;
+                } else {
+                    LogUtil.e(TAG, mSocketName + " Receive Data Fail, mInputStream is null");
+                    throw new IOException();
+                }
+            } catch (Exception e) {
+                LogUtil.e(TAG, mSocketName + " IOException, Receive Data Fail");
+                e.printStackTrace();
+                return r;
+            }
+        }
+
+        public int writeData(byte[] buffer, int offset, int len) {
+            try {
+                if (null != mOutputStream) {
+                    mOutputStream.write(buffer, offset, len);
+                    mOutputStream.flush();
+                    return len;
+                } else {
+                    LogUtil.e(TAG, mSocketName + " Send Data Fail, mOutputStream is null");
+                    throw new IOException();
+                }
+            } catch (Exception e) {
+                LogUtil.e(TAG, mSocketName + " IOException, Send Data Fail");
+                e.printStackTrace();
+                return -1;
+            }
+        }
+
+        @Override
+        public void run() {
+            LogUtil.e(TAG, "Begin to listen in " + mThreadName);
+            try {
+                if (null != mServerSocket && isRunning) {
+                    mSocket = mServerSocket.accept();
+                    if (null == mSocket) {
+                        LogUtil.d(TAG, "One client connected fail: " + mThreadName);
+                    }
+                    LogUtil.e(TAG, "One client connected in " + mThreadName);
+                    mSocket.setTcpNoDelay(true);
+                    mSocket.setSendBufferSize(SEND_BUFFER_SIZE);
+                    mSocket.setReceiveBufferSize(RECEIVE_BUFFER_SIZE);
+
+                    mInputStream = new BufferedInputStream(mSocket.getInputStream());
+                    mOutputStream = new BufferedOutputStream(mSocket.getOutputStream());
+                }
+            } catch (Exception e) {
+                LogUtil.e(TAG, "Get Exception in " + mThreadName);
+                e.printStackTrace();
+                return;
+            }
+            try {
+                while (mSocket != null && isRunning) {
+                    if (!mSocket.isConnected()) {
+                        LogUtil.e(TAG, "socket is disconnected when read data");
+                        break;
+                    }
+                    if (mSocketName.equals(CommonParams.SERVER_SOCKET_NAME)) {
+                        int read = 0;
+                        byte[] receiveBuffer = new byte[1024];
+                        while ((read = mInputStream.read(receiveBuffer)) != -1) {
+                            byte[] commandBuf = new byte[read];
+                            System.arraycopy(receiveBuffer, 0, commandBuf, 0, read);
+                            LogUtil.e(TAG, "receive dataBuffer " + ByteConvert.printHexString(commandBuf, commandBuf.length));
+                            CarlifeCmdMessage carlifeMsg = new CarlifeCmdMessage(false);
+//                            byte[] commandMsg = new byte[CommonParams.MSG_CMD_HEAD_SIZE_BYTE];
+//                            System.arraycopy(commandBuf, 0, commandMsg, 0, CommonParams.MSG_CMD_HEAD_SIZE_BYTE);
+                            carlifeMsg.fromByteArray(commandBuf, commandBuf.length);
+                            dumpData("RECV CarlifeMsg CMD ", carlifeMsg);
+                            switch (carlifeMsg.getServiceType()) {
+                                case CommonParams.MSG_CMD_HU_PROTOCOL_VERSION:
+                                    try {
+                                        CarlifeProtocolVersionMatchStatusProto.CarlifeProtocolVersionMatchStatus.Builder builderMatch = CarlifeProtocolVersionMatchStatusProto.CarlifeProtocolVersionMatchStatus.newBuilder();
+                                        builderMatch.setMatchStatus(CommonParams.PROTOCOL_VERSION_MATCH);
+                                        CarlifeProtocolVersionMatchStatusProto.CarlifeProtocolVersionMatchStatus mProtocolMatchStatus = builderMatch.build();
+                                        CarlifeProtocolVersionInfoManager.getInstance().setProtocolMatchStatus(mProtocolMatchStatus);
+                                        CarlifeProtocolVersionInfoManager.getInstance().sendProtocolMatchStatus();
+                                    } catch (Exception e) {
+                                        LogUtil.e(TAG, e.getMessage());
+                                    }
+                                    break;
+                                case CommonParams.MSG_CMD_STATISTIC_INFO:
+                                    break;
+                                case CommonParams.MSG_CMD_HU_INFO:
+                                    CarlifeDeviceInfoManager.getInstance().sendCarlifeDeviceInfo();
+                                    break;
+                                case CommonParams.MSG_CMD_VIDEO_ENCODER_INIT:
+                                    try {
+                                        CarlifeVideoEncoderInfo videoInfo = CarlifeVideoEncoderInfo.parseFrom(carlifeMsg.getData());
+                                        LogUtil.e(TAG, "videoInfo " + videoInfo.getWidth() + " " + videoInfo.getHeight());
+                                        CarlifeUtil.sendVideoCodecMsg(videoInfo.getWidth(), videoInfo.getHeight(), 0);
+                                    } catch (InvalidProtocolBufferException e) {
+                                        e.printStackTrace();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                    break;
+                                case CommonParams.MSG_CMD_MODULE_CONTROL:
+                                    CarlifeUtil.sendModuleControlToHu(ModuleStatusModel.CARLIFE_PHONE_MODULE_ID, ModuleStatusModel.PHONE_STATUS_IDLE);
+                                    CarlifeUtil.sendModuleControlToHu(ModuleStatusModel.CARLIFE_NAVI_MODULE_ID, ModuleStatusModel.NAVI_STATUS_IDLE);
+                                    CarlifeUtil.sendModuleControlToHu(ModuleStatusModel.CARLIFE_MUSIC_MODULE_ID, ModuleStatusModel.MUSIC_STATUS_IDLE);
+                                    CarlifeUtil.sendModuleControlToHu(ModuleStatusModel.CARLIFE_VR_MODULE_ID, ModuleStatusModel.VR_STATUS_IDLE);
+                                    CarlifeUtil.sendModuleControlToHu(ModuleStatusModel.CARLIFE_MIC_MODULE_ID, ModuleStatusModel.MIC_STATUS_USE_VEHICLE_MIC);
+                                    break;
+                                case CommonParams.MSG_CMD_VIDEO_ENCODER_START:
+                                    LogUtil.e("DecodeUtil", "MSG_CMD_VIDEO_ENCODER_START");
+                                    DecodeUtil.getInstance().startDecode();
+                                    AudioPlayerUtil.getInstance().startDecode();
+                                    MsgHandlerCenter.dispatchMessage(CommonParams.MSG_CONNECT_STATUS_CONNECTED);
+                                    break;
+                            }
+                        }
+//                        readData(dataBuffer, 0, dataBuffer.length);
+//                        LogUtil.v(TAG, "receive dataBuffer " + ByteConvert.printHexString(dataBuffer, dataBuffer.length));
+                    }
+
+                    /*
+                    if (mSocketName.equals(CommonParams.SERVER_SOCKET_NAME)
+                            || mSocketName.equals(CommonParams.SERVER_SOCKET_TOUCH_NAME)) {
+                        if (readData(msg, 0, CommonParams.MSG_CMD_HEAD_SIZE_BYTE) < 0) {
+                            break;
+                        }
+                        lenMsgHead = CommonParams.MSG_CMD_HEAD_SIZE_BYTE;
+                        lenMsgData = (int) ByteConvert.bytesToShort(new byte[]{msg[0], msg[1]});
+                    } else {
+                        if (readData(msg, 0, CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE) < 0) {
+                            break;
+                        }
+                        lenMsgHead = CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE;
+                        lenMsgData = ByteConvert.bytesToInt(new byte[]{msg[0], msg[1], msg[2], msg[3]});
+                    }
+                    LogUtil.d(TAG, "Channel = " + mSocketName + ", lenMsgHead = " + lenMsgHead + ", lenMsgData = " + lenMsgData);
+                    System.arraycopy(ByteConvert.intToBytes(lenMsgHead + lenMsgData), 0, head, 4, 4);
+
+                    lenMsg = lenMsgHead + lenMsgData;
+                    if (msg.length < lenMsg) {
+                        byte[] tmpMsg = msg;
+                        msg = new byte[lenMsg];
+                        System.arraycopy(tmpMsg, 0, msg, 0, lenMsgHead);
+                    }
+                    if (readData(msg, lenMsgHead, lenMsgData) < 0) {
+                        break;
+                    }*/
+
+//                    if (AOAAccessorySetup.getInstance().bulkTransferOut(head, LEN_OF_MSG_HEAD, msg, lenMsg) < 0) {
+//                        LogUtil.e(TAG, "bulkTransferOut fail");
+//                        break;
+//                    }
+                }
+            } catch (Exception ex) {
+                LogUtil.e(TAG, "get Exception in ReadThread " + ex.getMessage());
+                ex.printStackTrace();
+            }
+        }
+    }
+}

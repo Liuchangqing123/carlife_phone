@@ -1,0 +1,11 @@
+#ifndef _LOG_H_
+#define _LOG_H_
+
+#define LOG_TAG "carlife"
+#include <android/log.h>
+
+#define LOGE(fmt, args...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, fmt, ##args)
+#define LOGD(fmt, args...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, fmt, ##args)
+#define LOGI(fmt, args...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, fmt, ##args)
+
+#endif

@@ -1,0 +1,46 @@
+package com.didi365.carlife.android.phone;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+import com.didi365.carlife.android.phone.connect.AOAConnectManager;
+import com.didi365.carlife.android.phone.connect.ConnectClient;
+import com.didi365.carlife.android.phone.connect.ConnectManager;
+import com.didi365.carlife.android.phone.logic.CarlifeProtocolVersionInfoManager;
+import com.didi365.carlife.android.phone.protobuf.CarlifeProtocolVersionMatchStatusProto;
+import com.didi365.carlife.android.phone.protobuf.CarlifeProtocolVersionMatchStatusProto.CarlifeProtocolVersionMatchStatus;
+import com.didi365.carlife.android.phone.util.CommonParams;
+import com.didi365.carlife.android.phone.util.LogUtil;
+
+public class MainActivity extends AppCompatActivity {
+
+    private final String TAG = "AccessoryPhone";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        CarlifeProtocolVersionInfoManager.getInstance().init();
+        ConnectClient.getInstance().init(this);
+        ConnectManager.getInstance().init(this);
+        AOAConnectManager.getInstance().init(this);
+        ConnectManager.getInstance().startConnectThread();
+
+        try {
+            LogUtil.e("MainActivity", "aaa000");
+            CarlifeProtocolVersionMatchStatus.Builder builderMatch = CarlifeProtocolVersionMatchStatus.newBuilder();
+            LogUtil.e("MainActivity", "aaa");
+            builderMatch.setMatchStatus(CommonParams.PROTOCOL_VERSION_MATCH);
+            CarlifeProtocolVersionMatchStatusProto.CarlifeProtocolVersionMatchStatus mProtocolMatchStatus = builderMatch.build();
+            CarlifeProtocolVersionInfoManager.getInstance().setProtocolMatchStatus(mProtocolMatchStatus);
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+}

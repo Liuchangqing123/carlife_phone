@@ -1,0 +1,1927 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="AOAConnectManager" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="47fe89f9-cb5d-4220-8dc1-ca61424cf3e3" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-160964253">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.open.time.7" value="2" />
+          <entry key="project.opened" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="146" />
+          <entry key="xml" value="5" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="146" />
+          <entry key="XML" value="5" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="dummy" value="1" />
+          <entry key="java" value="5115" />
+          <entry key="xml" value="53" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="5115" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="XML" value="53" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/connect/AOAConnectManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="423">
+              <caret line="410" selection-start-line="410" selection-end-line="410" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeAuthenRequestProto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="22" column="4" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeAuthenResponseProto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="22" column="4" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeAuthenResultProto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/connect/ConnectSocket.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="355" column="73" lean-forward="true" selection-start-line="355" selection-start-column="73" selection-end-line="355" selection-end-column="73" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeAccelerationProto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="75" column="7" lean-forward="true" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
+              <folding>
+                <element signature="e#654#655#0" expanded="true" />
+                <element signature="e#690#691#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/connect/DecodeUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/connect/ConnectManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="68" column="41" lean-forward="true" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/connect/CommandUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="38" column="45" lean-forward="true" selection-start-line="38" selection-start-column="45" selection-end-line="38" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>android.hardware.usb.action.USB_ACCESSORY_ATTACHED</find>
+      <find>AOAConnectThread</find>
+      <find>startSocketReadThread</find>
+      <find>Begin to listen in VideoSocketReadThread</find>
+      <find>ReadThread Created</find>
+      <find>mSocketReadThread</find>
+      <find>mReadAESManager</find>
+      <find>MSG_CHANNEL head</find>
+      <find>Carlife AOA connect successed</find>
+      <find>MSG_CMD_HEAD_SIZE_BYTE</find>
+      <find>command socket read data</find>
+      <find>MSG_CHANNEL_ID msg</find>
+      <find>com.baidu.carlife.protobuf</find>
+      <find>MSG_CMD_HU_PROTOCOL_VERSION</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>com.didi365.carlife.android.phone.protobuf</replace>
+    </replaceStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeAuthenResponseProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeAuthenResultProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeBTHfpCallStatusCoverProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeBTHfpConnectionProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeBTHfpIndicationProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeBTHfpRequestProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeBTHfpResponseProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeBTHfpStatusRequestProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeBTHfpStatusResponseProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeBTIdentifyResultIndProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeBTPairInfoProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeBTStartIdentifyReqProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeBTStartPairReqProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeCallRecordsListProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeCallRecordsProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeCarGpsProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeCarHardKeyCodeProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeCarSpeedProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeConnectExceptionProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeContactsListProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeContactsProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeDeviceInfoProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeErrorCodeProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeFeatureConfigListProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeFeatureConfigProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeGearInfoProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeGyroscopeProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeMediaInfoListProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeMediaInfoProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeMediaProgressBarProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeModuleStatusListProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeModuleStatusProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeMusicInitProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeNaviAssitantGuideInfoProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeNaviNextTurnInfoProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeOilProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeProtocolVersionMatchStatusProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeProtocolVersionProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeStatisticsInfoProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeSubscribeMobileCarLifeInfoListProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeSubscribeMobileCarLifeInfoProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeTouchActionProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeTouchEventAllDeviceProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeTouchFlingProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeTouchScrollProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeTouchSinglePointProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeTTSInitProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeVehicleInfoListProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeVideoEncoderInfoProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeVideoFrameRateProto.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/connect/AOAConnectManager.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-9" />
+    <option name="y" value="-9" />
+    <option name="width" value="1938" />
+    <option name="height" value="1048" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="CarLife-Android-Phone" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="CarLife-Android-Phone" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="CarLife-Android-Phone" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="phone" type="cbb59c9e:AndroidPsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="CarLife-Android-Phone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarLife-Android-Phone" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarLife-Android-Phone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarLife-Android-Phone" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarLife-Android-Phone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarLife-Android-Phone" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="libs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarLife-Android-Phone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarLife-Android-Phone" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarLife-Android-Phone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarLife-Android-Phone" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarLife-Android-Phone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarLife-Android-Phone" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarLife-Android-Phone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarLife-Android-Phone" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="phone" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarLife-Android-Phone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarLife-Android-Phone" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="phone" type="462c0819:PsiDirectoryNode" />
+              <item name="connect" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarLife-Android-Phone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarLife-Android-Phone" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="phone" type="462c0819:PsiDirectoryNode" />
+              <item name="encryption" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarLife-Android-Phone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarLife-Android-Phone" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="phone" type="462c0819:PsiDirectoryNode" />
+              <item name="protobuf" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarLife-Android-Phone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarLife-Android-Phone" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="phone" type="462c0819:PsiDirectoryNode" />
+              <item name="receiver" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarLife-Android-Phone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarLife-Android-Phone" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="phone" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarLife-Android-Phone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarLife-Android-Phone" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CarLife-Android-Phone" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CarLife-Android-Phone" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="xml" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="android.sdk.path" value="D:/Android/sdk" />
+    <property name="device.picker.selection" value="T8DDU15324029840" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.didi365.carlife.android.phone.connect" />
+      <recent name="com.didi365.carlife.android.phone.util" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\workspace\carlife_phone\trunk\CarLife-Android-Phone\app\src\main\java\com\didi365\carlife\android\phone" />
+      <recent name="E:\workspace\carlife_phone\trunk\CarLife-Android-Phone\app\libs" />
+      <recent name="E:\workspace\carlife_phone\trunk\CarLife-Android-Phone\app\src\main\java\com\didi365\carlife\android\phone\receiver" />
+      <recent name="E:\workspace\carlife_phone\trunk\CarLife-Android-Phone\app\src\main\res" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="true" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="47fe89f9-cb5d-4220-8dc1-ca61424cf3e3" name="Default Changelist" comment="" />
+      <created>1553665709217</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1553665709217</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.21514745" />
+      <window_info id="Structure" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="Build Variants" order="4" side_tool="true" />
+      <window_info id="Image Layers" order="5" />
+      <window_info id="Designer" order="6" />
+      <window_info id="Capture Tool" order="7" />
+      <window_info anchor="bottom" id="Run" order="0" />
+      <window_info anchor="bottom" id="Logcat" order="1" weight="0.39660057" />
+      <window_info anchor="bottom" id="TODO" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" />
+      <window_info anchor="bottom" id="Terminal" order="4" />
+      <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Build" order="7" weight="0.3286119" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" />
+      <window_info anchor="bottom" id="Find" order="9" />
+      <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="right" id="Gradle" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info anchor="right" id="Preview" order="4" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeCallRecordsProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10667">
+          <caret line="603" column="56" selection-start-line="603" selection-start-column="56" selection-end-line="603" selection-end-column="56" />
+          <folding>
+            <element signature="e#2019#2020#0" expanded="true" />
+            <element signature="e#2060#2061#0" expanded="true" />
+            <element signature="e#2182#2402#0" expanded="true" />
+            <element signature="e#2401#2402#0" expanded="true" />
+            <element signature="e#2513#2514#0" expanded="true" />
+            <element signature="e#2576#2577#0" expanded="true" />
+            <element signature="e#2677#2678#0" expanded="true" />
+            <element signature="e#2717#2718#0" expanded="true" />
+            <element signature="e#12260#12261#0" expanded="true" />
+            <element signature="e#12311#12312#0" expanded="true" />
+            <element signature="e#12830#12831#0" expanded="true" />
+            <element signature="e#12877#12878#0" expanded="true" />
+            <element signature="e#17147#17148#0" expanded="true" />
+            <element signature="e#17187#17188#0" expanded="true" />
+            <element signature="e#17215#17216#0" expanded="true" />
+            <element signature="e#17255#17256#0" expanded="true" />
+            <element signature="e#17572#17573#0" expanded="true" />
+            <element signature="e#17613#17614#0" expanded="true" />
+            <element signature="e#17645#17646#0" expanded="true" />
+            <element signature="e#17686#17687#0" expanded="true" />
+            <element signature="e#18110#18111#0" expanded="true" />
+            <element signature="e#18153#18154#0" expanded="true" />
+            <element signature="e#18187#18188#0" expanded="true" />
+            <element signature="e#18230#18231#0" expanded="true" />
+            <element signature="e#18672#18673#0" expanded="true" />
+            <element signature="e#18717#18718#0" expanded="true" />
+            <element signature="e#18753#18754#0" expanded="true" />
+            <element signature="e#18798#18799#0" expanded="true" />
+            <element signature="e#19246#19247#0" expanded="true" />
+            <element signature="e#19287#19288#0" expanded="true" />
+            <element signature="e#19319#19320#0" expanded="true" />
+            <element signature="e#19360#19361#0" expanded="true" />
+            <element signature="e#19877#19878#0" expanded="true" />
+            <element signature="e#19918#19919#0" expanded="true" />
+            <element signature="e#21260#21261#0" expanded="true" />
+            <element signature="e#21287#21288#0" expanded="true" />
+            <element signature="e#22180#23171#0" expanded="true" />
+            <element signature="e#23170#23171#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeCarGpsProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="e#19167#19168#0" expanded="true" />
+            <element signature="e#19218#19219#0" expanded="true" />
+            <element signature="e#19725#19726#0" expanded="true" />
+            <element signature="e#19772#19773#0" expanded="true" />
+            <element signature="e#27277#27278#0" expanded="true" />
+            <element signature="e#27326#27327#0" expanded="true" />
+            <element signature="e#27363#27364#0" expanded="true" />
+            <element signature="e#27412#27413#0" expanded="true" />
+            <element signature="e#27807#27808#0" expanded="true" />
+            <element signature="e#27857#27858#0" expanded="true" />
+            <element signature="e#27895#27896#0" expanded="true" />
+            <element signature="e#27945#27946#0" expanded="true" />
+            <element signature="e#28335#28336#0" expanded="true" />
+            <element signature="e#28380#28381#0" expanded="true" />
+            <element signature="e#28413#28414#0" expanded="true" />
+            <element signature="e#28458#28459#0" expanded="true" />
+            <element signature="e#28820#28821#0" expanded="true" />
+            <element signature="e#28866#28867#0" expanded="true" />
+            <element signature="e#28900#28901#0" expanded="true" />
+            <element signature="e#28946#28947#0" expanded="true" />
+            <element signature="e#29308#29309#0" expanded="true" />
+            <element signature="e#29351#29352#0" expanded="true" />
+            <element signature="e#29382#29383#0" expanded="true" />
+            <element signature="e#29425#29426#0" expanded="true" />
+            <element signature="e#29768#29769#0" expanded="true" />
+            <element signature="e#29810#29811#0" expanded="true" />
+            <element signature="e#29840#29841#0" expanded="true" />
+            <element signature="e#29882#29883#0" expanded="true" />
+            <element signature="e#30223#30224#0" expanded="true" />
+            <element signature="e#30267#30268#0" expanded="true" />
+            <element signature="e#30299#30300#0" expanded="true" />
+            <element signature="e#30343#30344#0" expanded="true" />
+            <element signature="e#30690#30691#0" expanded="true" />
+            <element signature="e#30731#30732#0" expanded="true" />
+            <element signature="e#30760#30761#0" expanded="true" />
+            <element signature="e#30801#30802#0" expanded="true" />
+            <element signature="e#31132#31133#0" expanded="true" />
+            <element signature="e#31174#31175#0" expanded="true" />
+            <element signature="e#31204#31205#0" expanded="true" />
+            <element signature="e#31246#31247#0" expanded="true" />
+            <element signature="e#31580#31581#0" expanded="true" />
+            <element signature="e#31620#31621#0" expanded="true" />
+            <element signature="e#31648#31649#0" expanded="true" />
+            <element signature="e#31688#31689#0" expanded="true" />
+            <element signature="e#32010#32011#0" expanded="true" />
+            <element signature="e#32050#32051#0" expanded="true" />
+            <element signature="e#32078#32079#0" expanded="true" />
+            <element signature="e#32118#32119#0" expanded="true" />
+            <element signature="e#32440#32441#0" expanded="true" />
+            <element signature="e#32480#32481#0" expanded="true" />
+            <element signature="e#32508#32509#0" expanded="true" />
+            <element signature="e#32548#32549#0" expanded="true" />
+            <element signature="e#32870#32871#0" expanded="true" />
+            <element signature="e#32910#32911#0" expanded="true" />
+            <element signature="e#32938#32939#0" expanded="true" />
+            <element signature="e#32978#32979#0" expanded="true" />
+            <element signature="e#33300#33301#0" expanded="true" />
+            <element signature="e#33340#33341#0" expanded="true" />
+            <element signature="e#33368#33369#0" expanded="true" />
+            <element signature="e#33408#33409#0" expanded="true" />
+            <element signature="e#33732#33733#0" expanded="true" />
+            <element signature="e#33773#33774#0" expanded="true" />
+            <element signature="e#33802#33803#0" expanded="true" />
+            <element signature="e#33843#33844#0" expanded="true" />
+            <element signature="e#34173#34174#0" expanded="true" />
+            <element signature="e#34214#34215#0" expanded="true" />
+            <element signature="e#34243#34244#0" expanded="true" />
+            <element signature="e#34284#34285#0" expanded="true" />
+            <element signature="e#34614#34615#0" expanded="true" />
+            <element signature="e#34655#34656#0" expanded="true" />
+            <element signature="e#34684#34685#0" expanded="true" />
+            <element signature="e#34725#34726#0" expanded="true" />
+            <element signature="e#35063#35064#0" expanded="true" />
+            <element signature="e#35108#35109#0" expanded="true" />
+            <element signature="e#35141#35142#0" expanded="true" />
+            <element signature="e#35186#35187#0" expanded="true" />
+            <element signature="e#35554#35555#0" expanded="true" />
+            <element signature="e#35602#35603#0" expanded="true" />
+            <element signature="e#35638#35639#0" expanded="true" />
+            <element signature="e#35686#35687#0" expanded="true" />
+            <element signature="e#36072#36073#0" expanded="true" />
+            <element signature="e#36120#36121#0" expanded="true" />
+            <element signature="e#36156#36157#0" expanded="true" />
+            <element signature="e#36204#36205#0" expanded="true" />
+            <element signature="e#36592#36593#0" expanded="true" />
+            <element signature="e#36641#36642#0" expanded="true" />
+            <element signature="e#36678#36679#0" expanded="true" />
+            <element signature="e#36727#36728#0" expanded="true" />
+            <element signature="e#37116#37117#0" expanded="true" />
+            <element signature="e#37163#37164#0" expanded="true" />
+            <element signature="e#37198#37199#0" expanded="true" />
+            <element signature="e#37245#37246#0" expanded="true" />
+            <element signature="e#37620#37621#0" expanded="true" />
+            <element signature="e#37666#37667#0" expanded="true" />
+            <element signature="e#37700#37701#0" expanded="true" />
+            <element signature="e#37746#37747#0" expanded="true" />
+            <element signature="e#38115#38116#0" expanded="true" />
+            <element signature="e#38161#38162#0" expanded="true" />
+            <element signature="e#38195#38196#0" expanded="true" />
+            <element signature="e#38241#38242#0" expanded="true" />
+            <element signature="e#38611#38612#0" expanded="true" />
+            <element signature="e#38657#38658#0" expanded="true" />
+            <element signature="e#38692#38693#0" expanded="true" />
+            <element signature="e#38738#38739#0" expanded="true" />
+            <element signature="e#39642#39643#0" expanded="true" />
+            <element signature="e#39669#39670#0" expanded="true" />
+            <element signature="e#41046#42224#0" expanded="true" />
+            <element signature="e#42223#42224#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeCarHardKeyCodeProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="14" column="93" lean-forward="true" selection-start-line="14" selection-start-column="93" selection-end-line="14" selection-end-column="93" />
+          <folding>
+            <element signature="e#7226#7227#0" expanded="true" />
+            <element signature="e#7277#7278#0" expanded="true" />
+            <element signature="e#7832#7833#0" expanded="true" />
+            <element signature="e#7879#7880#0" expanded="true" />
+            <element signature="e#10933#10934#0" expanded="true" />
+            <element signature="e#10977#10978#0" expanded="true" />
+            <element signature="e#11009#11010#0" expanded="true" />
+            <element signature="e#11053#11054#0" expanded="true" />
+            <element signature="e#11975#11976#0" expanded="true" />
+            <element signature="e#12002#12003#0" expanded="true" />
+            <element signature="e#12400#13370#0" expanded="true" />
+            <element signature="e#13369#13370#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeCarSpeedProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="13" column="4" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+          <folding>
+            <element signature="e#7432#7433#0" expanded="true" />
+            <element signature="e#7483#7484#0" expanded="true" />
+            <element signature="e#8002#8003#0" expanded="true" />
+            <element signature="e#8049#8050#0" expanded="true" />
+            <element signature="e#11193#11194#0" expanded="true" />
+            <element signature="e#11235#11236#0" expanded="true" />
+            <element signature="e#11265#11266#0" expanded="true" />
+            <element signature="e#11307#11308#0" expanded="true" />
+            <element signature="e#11652#11653#0" expanded="true" />
+            <element signature="e#11698#11699#0" expanded="true" />
+            <element signature="e#11733#11734#0" expanded="true" />
+            <element signature="e#11779#11780#0" expanded="true" />
+            <element signature="e#12691#12692#0" expanded="true" />
+            <element signature="e#12718#12719#0" expanded="true" />
+            <element signature="e#13142#14081#0" expanded="true" />
+            <element signature="e#14080#14081#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeConnectExceptionProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="22" column="4" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+          <folding>
+            <element signature="e#7394#7395#0" expanded="true" />
+            <element signature="e#7445#7446#0" expanded="true" />
+            <element signature="e#8012#8013#0" expanded="true" />
+            <element signature="e#8059#8060#0" expanded="true" />
+            <element signature="e#11181#11182#0" expanded="true" />
+            <element signature="e#11231#11232#0" expanded="true" />
+            <element signature="e#11269#11270#0" expanded="true" />
+            <element signature="e#11319#11320#0" expanded="true" />
+            <element signature="e#12285#12286#0" expanded="true" />
+            <element signature="e#12312#12313#0" expanded="true" />
+            <element signature="e#12719#13709#0" expanded="true" />
+            <element signature="e#13708#13709#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeContactsListProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="280" column="20" lean-forward="true" selection-start-line="280" selection-start-column="20" selection-end-line="280" selection-end-column="20" />
+          <folding>
+            <element signature="e#8436#8437#0" expanded="true" />
+            <element signature="e#8487#8488#0" expanded="true" />
+            <element signature="e#9030#9031#0" expanded="true" />
+            <element signature="e#9077#9078#0" expanded="true" />
+            <element signature="e#12999#13000#0" expanded="true" />
+            <element signature="e#13039#13040#0" expanded="true" />
+            <element signature="e#13067#13068#0" expanded="true" />
+            <element signature="e#13107#13108#0" expanded="true" />
+            <element signature="e#13730#13731#0" expanded="true" />
+            <element signature="e#13787#13788#0" expanded="true" />
+            <element signature="e#16682#16683#0" expanded="true" />
+            <element signature="e#16709#16710#0" expanded="true" />
+            <element signature="e#17247#18218#0" expanded="true" />
+            <element signature="e#18217#18218#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeContactsProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="12" column="32" lean-forward="true" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+          <folding>
+            <element signature="e#7828#7829#0" expanded="true" />
+            <element signature="e#7879#7880#0" expanded="true" />
+            <element signature="e#8380#8381#0" expanded="true" />
+            <element signature="e#8427#8428#0" expanded="true" />
+            <element signature="e#11683#11684#0" expanded="true" />
+            <element signature="e#11723#11724#0" expanded="true" />
+            <element signature="e#11751#11752#0" expanded="true" />
+            <element signature="e#11791#11792#0" expanded="true" />
+            <element signature="e#12108#12109#0" expanded="true" />
+            <element signature="e#12149#12150#0" expanded="true" />
+            <element signature="e#12181#12182#0" expanded="true" />
+            <element signature="e#12222#12223#0" expanded="true" />
+            <element signature="e#12646#12647#0" expanded="true" />
+            <element signature="e#12689#12690#0" expanded="true" />
+            <element signature="e#12723#12724#0" expanded="true" />
+            <element signature="e#12766#12767#0" expanded="true" />
+            <element signature="e#13745#13746#0" expanded="true" />
+            <element signature="e#13772#13773#0" expanded="true" />
+            <element signature="e#14227#15169#0" expanded="true" />
+            <element signature="e#15168#15169#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeDeviceInfoProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="13" column="4" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+          <folding>
+            <element signature="e#7395#7396#0" expanded="true" />
+            <element signature="e#7420#7421#0" expanded="true" />
+            <element signature="e#17433#17434#0" expanded="true" />
+            <element signature="e#17484#17485#0" expanded="true" />
+            <element signature="e#17997#17998#0" expanded="true" />
+            <element signature="e#18044#18045#0" expanded="true" />
+            <element signature="e#25143#25144#0" expanded="true" />
+            <element signature="e#25182#25183#0" expanded="true" />
+            <element signature="e#25212#25213#0" expanded="true" />
+            <element signature="e#25251#25252#0" expanded="true" />
+            <element signature="e#25659#25660#0" expanded="true" />
+            <element signature="e#25701#25702#0" expanded="true" />
+            <element signature="e#25734#25735#0" expanded="true" />
+            <element signature="e#25776#25777#0" expanded="true" />
+            <element signature="e#26215#26216#0" expanded="true" />
+            <element signature="e#26262#26263#0" expanded="true" />
+            <element signature="e#26300#26301#0" expanded="true" />
+            <element signature="e#26347#26348#0" expanded="true" />
+            <element signature="e#26811#26812#0" expanded="true" />
+            <element signature="e#26853#26854#0" expanded="true" />
+            <element signature="e#26886#26887#0" expanded="true" />
+            <element signature="e#26928#26929#0" expanded="true" />
+            <element signature="e#27360#27361#0" expanded="true" />
+            <element signature="e#27403#27404#0" expanded="true" />
+            <element signature="e#27437#27438#0" expanded="true" />
+            <element signature="e#27480#27481#0" expanded="true" />
+            <element signature="e#27921#27922#0" expanded="true" />
+            <element signature="e#27965#27966#0" expanded="true" />
+            <element signature="e#28000#28001#0" expanded="true" />
+            <element signature="e#28044#28045#0" expanded="true" />
+            <element signature="e#28489#28490#0" expanded="true" />
+            <element signature="e#28532#28533#0" expanded="true" />
+            <element signature="e#28566#28567#0" expanded="true" />
+            <element signature="e#28609#28610#0" expanded="true" />
+            <element signature="e#29049#29050#0" expanded="true" />
+            <element signature="e#29093#29094#0" expanded="true" />
+            <element signature="e#29128#29129#0" expanded="true" />
+            <element signature="e#29172#29173#0" expanded="true" />
+            <element signature="e#29627#29628#0" expanded="true" />
+            <element signature="e#29675#29676#0" expanded="true" />
+            <element signature="e#29714#29715#0" expanded="true" />
+            <element signature="e#29762#29763#0" expanded="true" />
+            <element signature="e#30240#30241#0" expanded="true" />
+            <element signature="e#30285#30286#0" expanded="true" />
+            <element signature="e#30321#30322#0" expanded="true" />
+            <element signature="e#30366#30367#0" expanded="true" />
+            <element signature="e#30815#30816#0" expanded="true" />
+            <element signature="e#30856#30857#0" expanded="true" />
+            <element signature="e#30888#30889#0" expanded="true" />
+            <element signature="e#30929#30930#0" expanded="true" />
+            <element signature="e#31348#31349#0" expanded="true" />
+            <element signature="e#31388#31389#0" expanded="true" />
+            <element signature="e#31419#31420#0" expanded="true" />
+            <element signature="e#31459#31460#0" expanded="true" />
+            <element signature="e#31889#31890#0" expanded="true" />
+            <element signature="e#31938#31939#0" expanded="true" />
+            <element signature="e#31978#31979#0" expanded="true" />
+            <element signature="e#32027#32028#0" expanded="true" />
+            <element signature="e#32506#32507#0" expanded="true" />
+            <element signature="e#32548#32549#0" expanded="true" />
+            <element signature="e#32581#32582#0" expanded="true" />
+            <element signature="e#32623#32624#0" expanded="true" />
+            <element signature="e#33057#33058#0" expanded="true" />
+            <element signature="e#33101#33102#0" expanded="true" />
+            <element signature="e#33136#33137#0" expanded="true" />
+            <element signature="e#33180#33181#0" expanded="true" />
+            <element signature="e#33626#33627#0" expanded="true" />
+            <element signature="e#33669#33670#0" expanded="true" />
+            <element signature="e#33703#33704#0" expanded="true" />
+            <element signature="e#33746#33747#0" expanded="true" />
+            <element signature="e#34189#34190#0" expanded="true" />
+            <element signature="e#34234#34235#0" expanded="true" />
+            <element signature="e#34270#34271#0" expanded="true" />
+            <element signature="e#34315#34316#0" expanded="true" />
+            <element signature="e#34778#34779#0" expanded="true" />
+            <element signature="e#34826#34827#0" expanded="true" />
+            <element signature="e#34865#34866#0" expanded="true" />
+            <element signature="e#34913#34914#0" expanded="true" />
+            <element signature="e#35389#35390#0" expanded="true" />
+            <element signature="e#35433#35434#0" expanded="true" />
+            <element signature="e#35468#35469#0" expanded="true" />
+            <element signature="e#35512#35513#0" expanded="true" />
+            <element signature="e#35952#35953#0" expanded="true" />
+            <element signature="e#35992#35993#0" expanded="true" />
+            <element signature="e#36023#36024#0" expanded="true" />
+            <element signature="e#36063#36064#0" expanded="true" />
+            <element signature="e#36481#36482#0" expanded="true" />
+            <element signature="e#36524#36525#0" expanded="true" />
+            <element signature="e#36555#36556#0" expanded="true" />
+            <element signature="e#36598#36599#0" expanded="true" />
+            <element signature="e#36936#36937#0" expanded="true" />
+            <element signature="e#36978#36979#0" expanded="true" />
+            <element signature="e#37011#37012#0" expanded="true" />
+            <element signature="e#37053#37054#0" expanded="true" />
+            <element signature="e#37491#37492#0" expanded="true" />
+            <element signature="e#37537#37538#0" expanded="true" />
+            <element signature="e#37574#37575#0" expanded="true" />
+            <element signature="e#37620#37621#0" expanded="true" />
+            <element signature="e#38628#38629#0" expanded="true" />
+            <element signature="e#38655#38656#0" expanded="true" />
+            <element signature="e#39942#41118#0" expanded="true" />
+            <element signature="e#41117#41118#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeErrorCodeProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="14" column="83" lean-forward="true" selection-start-line="14" selection-start-column="83" selection-end-line="14" selection-end-column="83" />
+          <folding>
+            <element signature="e#6979#6980#0" expanded="true" />
+            <element signature="e#7030#7031#0" expanded="true" />
+            <element signature="e#7537#7538#0" expanded="true" />
+            <element signature="e#7584#7585#0" expanded="true" />
+            <element signature="e#10531#10532#0" expanded="true" />
+            <element signature="e#10577#10578#0" expanded="true" />
+            <element signature="e#10614#10615#0" expanded="true" />
+            <element signature="e#10660#10661#0" expanded="true" />
+            <element signature="e#11664#11665#0" expanded="true" />
+            <element signature="e#11691#11692#0" expanded="true" />
+            <element signature="e#12080#13017#0" expanded="true" />
+            <element signature="e#13016#13017#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeFeatureConfigListProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="282" column="11" lean-forward="true" selection-start-line="282" selection-start-column="11" selection-end-line="282" selection-end-column="11" />
+          <folding>
+            <element signature="e#8702#8703#0" expanded="true" />
+            <element signature="e#8753#8754#0" expanded="true" />
+            <element signature="e#9326#9327#0" expanded="true" />
+            <element signature="e#9373#9374#0" expanded="true" />
+            <element signature="e#13387#13388#0" expanded="true" />
+            <element signature="e#13427#13428#0" expanded="true" />
+            <element signature="e#13455#13456#0" expanded="true" />
+            <element signature="e#13495#13496#0" expanded="true" />
+            <element signature="e#14125#14126#0" expanded="true" />
+            <element signature="e#14180#14181#0" expanded="true" />
+            <element signature="e#17145#17146#0" expanded="true" />
+            <element signature="e#17172#17173#0" expanded="true" />
+            <element signature="e#17750#18754#0" expanded="true" />
+            <element signature="e#18753#18754#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeFeatureConfigProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="13" column="4" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+          <folding>
+            <element signature="e#7560#7561#0" expanded="true" />
+            <element signature="e#7611#7612#0" expanded="true" />
+            <element signature="e#8142#8143#0" expanded="true" />
+            <element signature="e#8189#8190#0" expanded="true" />
+            <element signature="e#11345#11346#0" expanded="true" />
+            <element signature="e#11385#11386#0" expanded="true" />
+            <element signature="e#11416#11417#0" expanded="true" />
+            <element signature="e#11456#11457#0" expanded="true" />
+            <element signature="e#11870#11871#0" expanded="true" />
+            <element signature="e#11912#11913#0" expanded="true" />
+            <element signature="e#11942#11943#0" expanded="true" />
+            <element signature="e#11984#11985#0" expanded="true" />
+            <element signature="e#12878#12879#0" expanded="true" />
+            <element signature="e#12905#12906#0" expanded="true" />
+            <element signature="e#13333#14301#0" expanded="true" />
+            <element signature="e#14300#14301#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeGearInfoProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="11" column="53" lean-forward="true" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
+          <folding>
+            <element signature="e#6917#6918#0" expanded="true" />
+            <element signature="e#6968#6969#0" expanded="true" />
+            <element signature="e#7487#7488#0" expanded="true" />
+            <element signature="e#7534#7535#0" expanded="true" />
+            <element signature="e#10474#10475#0" expanded="true" />
+            <element signature="e#10515#10516#0" expanded="true" />
+            <element signature="e#10544#10545#0" expanded="true" />
+            <element signature="e#10585#10586#0" expanded="true" />
+            <element signature="e#11465#11466#0" expanded="true" />
+            <element signature="e#11492#11493#0" expanded="true" />
+            <element signature="e#11881#12806#0" expanded="true" />
+            <element signature="e#12805#12806#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeGyroscopeProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="e#8995#8996#0" expanded="true" />
+            <element signature="e#9046#9047#0" expanded="true" />
+            <element signature="e#9571#9572#0" expanded="true" />
+            <element signature="e#9618#9619#0" expanded="true" />
+            <element signature="e#13342#13343#0" expanded="true" />
+            <element signature="e#13387#13388#0" expanded="true" />
+            <element signature="e#13420#13421#0" expanded="true" />
+            <element signature="e#13465#13466#0" expanded="true" />
+            <element signature="e#13820#13821#0" expanded="true" />
+            <element signature="e#13862#13863#0" expanded="true" />
+            <element signature="e#13895#13896#0" expanded="true" />
+            <element signature="e#13937#13938#0" expanded="true" />
+            <element signature="e#14278#14279#0" expanded="true" />
+            <element signature="e#14320#14321#0" expanded="true" />
+            <element signature="e#14353#14354#0" expanded="true" />
+            <element signature="e#14395#14396#0" expanded="true" />
+            <element signature="e#14736#14737#0" expanded="true" />
+            <element signature="e#14778#14779#0" expanded="true" />
+            <element signature="e#14811#14812#0" expanded="true" />
+            <element signature="e#14853#14854#0" expanded="true" />
+            <element signature="e#15202#15203#0" expanded="true" />
+            <element signature="e#15248#15249#0" expanded="true" />
+            <element signature="e#15283#15284#0" expanded="true" />
+            <element signature="e#15329#15330#0" expanded="true" />
+            <element signature="e#16245#16246#0" expanded="true" />
+            <element signature="e#16272#16273#0" expanded="true" />
+            <element signature="e#16819#17795#0" expanded="true" />
+            <element signature="e#17794#17795#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeHuRsaPublicKeyResponseProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="18" column="82" lean-forward="true" selection-start-line="18" selection-start-column="82" selection-end-line="18" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeMdAesKeyRequestProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-90">
+          <caret line="17" column="4" lean-forward="true" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeMediaInfoListProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="284" column="7" lean-forward="true" selection-start-line="284" selection-start-column="7" selection-end-line="284" selection-end-column="7" />
+          <folding>
+            <element signature="e#8422#8423#0" expanded="true" />
+            <element signature="e#8473#8474#0" expanded="true" />
+            <element signature="e#9022#9023#0" expanded="true" />
+            <element signature="e#9069#9070#0" expanded="true" />
+            <element signature="e#12959#12960#0" expanded="true" />
+            <element signature="e#12999#13000#0" expanded="true" />
+            <element signature="e#13027#13028#0" expanded="true" />
+            <element signature="e#13067#13068#0" expanded="true" />
+            <element signature="e#13669#13670#0" expanded="true" />
+            <element signature="e#13720#13721#0" expanded="true" />
+            <element signature="e#16517#16518#0" expanded="true" />
+            <element signature="e#16544#16545#0" expanded="true" />
+            <element signature="e#17078#18050#0" expanded="true" />
+            <element signature="e#18049#18050#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeMediaInfoProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11531">
+          <caret line="648" column="56" selection-start-line="648" selection-start-column="56" selection-end-line="648" selection-end-column="56" />
+          <folding>
+            <element signature="e#11057#11058#0" expanded="true" />
+            <element signature="e#11108#11109#0" expanded="true" />
+            <element signature="e#11615#11616#0" expanded="true" />
+            <element signature="e#11662#11663#0" expanded="true" />
+            <element signature="e#16091#16092#0" expanded="true" />
+            <element signature="e#16134#16135#0" expanded="true" />
+            <element signature="e#16168#16169#0" expanded="true" />
+            <element signature="e#16211#16212#0" expanded="true" />
+            <element signature="e#16645#16646#0" expanded="true" />
+            <element signature="e#16686#16687#0" expanded="true" />
+            <element signature="e#16718#16719#0" expanded="true" />
+            <element signature="e#16759#16760#0" expanded="true" />
+            <element signature="e#17183#17184#0" expanded="true" />
+            <element signature="e#17226#17227#0" expanded="true" />
+            <element signature="e#17260#17261#0" expanded="true" />
+            <element signature="e#17303#17304#0" expanded="true" />
+            <element signature="e#17739#17740#0" expanded="true" />
+            <element signature="e#17781#17782#0" expanded="true" />
+            <element signature="e#17814#17815#0" expanded="true" />
+            <element signature="e#17856#17857#0" expanded="true" />
+            <element signature="e#18290#18291#0" expanded="true" />
+            <element signature="e#18335#18336#0" expanded="true" />
+            <element signature="e#18395#18396#0" expanded="true" />
+            <element signature="e#18440#18441#0" expanded="true" />
+            <element signature="e#18919#18920#0" expanded="true" />
+            <element signature="e#18964#18965#0" expanded="true" />
+            <element signature="e#18997#18998#0" expanded="true" />
+            <element signature="e#19042#19043#0" expanded="true" />
+            <element signature="e#19402#19403#0" expanded="true" />
+            <element signature="e#19450#19451#0" expanded="true" />
+            <element signature="e#19486#19487#0" expanded="true" />
+            <element signature="e#19534#19535#0" expanded="true" />
+            <element signature="e#19903#19904#0" expanded="true" />
+            <element signature="e#19946#19947#0" expanded="true" />
+            <element signature="e#19980#19981#0" expanded="true" />
+            <element signature="e#20023#20024#0" expanded="true" />
+            <element signature="e#20456#20457#0" expanded="true" />
+            <element signature="e#20497#20498#0" expanded="true" />
+            <element signature="e#20526#20527#0" expanded="true" />
+            <element signature="e#20567#20568#0" expanded="true" />
+            <element signature="e#21439#21440#0" expanded="true" />
+            <element signature="e#21466#21467#0" expanded="true" />
+            <element signature="e#22190#23208#0" expanded="true" />
+            <element signature="e#23207#23208#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeMediaProgressBarProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" column="44" lean-forward="true" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+          <folding>
+            <element signature="e#7368#7369#0" expanded="true" />
+            <element signature="e#7419#7420#0" expanded="true" />
+            <element signature="e#7986#7987#0" expanded="true" />
+            <element signature="e#8033#8034#0" expanded="true" />
+            <element signature="e#11143#11144#0" expanded="true" />
+            <element signature="e#11191#11192#0" expanded="true" />
+            <element signature="e#11227#11228#0" expanded="true" />
+            <element signature="e#11275#11276#0" expanded="true" />
+            <element signature="e#12229#12230#0" expanded="true" />
+            <element signature="e#12256#12257#0" expanded="true" />
+            <element signature="e#12663#13651#0" expanded="true" />
+            <element signature="e#13650#13651#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeModuleStatusListProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" column="44" lean-forward="true" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+          <folding>
+            <element signature="e#8632#8633#0" expanded="true" />
+            <element signature="e#8683#8684#0" expanded="true" />
+            <element signature="e#9250#9251#0" expanded="true" />
+            <element signature="e#9297#9298#0" expanded="true" />
+            <element signature="e#13280#13281#0" expanded="true" />
+            <element signature="e#13320#13321#0" expanded="true" />
+            <element signature="e#13348#13349#0" expanded="true" />
+            <element signature="e#13388#13389#0" expanded="true" />
+            <element signature="e#14011#14012#0" expanded="true" />
+            <element signature="e#14065#14066#0" expanded="true" />
+            <element signature="e#16988#16989#0" expanded="true" />
+            <element signature="e#17015#17016#0" expanded="true" />
+            <element signature="e#17591#18587#0" expanded="true" />
+            <element signature="e#18586#18587#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeModuleStatusProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6113">
+          <caret line="347" column="56" selection-start-line="347" selection-start-column="56" selection-end-line="347" selection-end-column="56" />
+          <folding>
+            <element signature="e#7671#7672#0" expanded="true" />
+            <element signature="e#7722#7723#0" expanded="true" />
+            <element signature="e#8265#8266#0" expanded="true" />
+            <element signature="e#8312#8313#0" expanded="true" />
+            <element signature="e#11533#11534#0" expanded="true" />
+            <element signature="e#11578#11579#0" expanded="true" />
+            <element signature="e#11611#11612#0" expanded="true" />
+            <element signature="e#11656#11657#0" expanded="true" />
+            <element signature="e#12016#12017#0" expanded="true" />
+            <element signature="e#12061#12062#0" expanded="true" />
+            <element signature="e#12094#12095#0" expanded="true" />
+            <element signature="e#12139#12140#0" expanded="true" />
+            <element signature="e#13059#13060#0" expanded="true" />
+            <element signature="e#13086#13087#0" expanded="true" />
+            <element signature="e#13524#14493#0" expanded="true" />
+            <element signature="e#14492#14493#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeMusicInitProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6851">
+          <caret line="388" column="56" selection-start-line="388" selection-start-column="56" selection-end-line="388" selection-end-column="56" />
+          <folding>
+            <element signature="e#8201#8202#0" expanded="true" />
+            <element signature="e#8252#8253#0" expanded="true" />
+            <element signature="e#8777#8778#0" expanded="true" />
+            <element signature="e#8824#8825#0" expanded="true" />
+            <element signature="e#12238#12239#0" expanded="true" />
+            <element signature="e#12285#12286#0" expanded="true" />
+            <element signature="e#12320#12321#0" expanded="true" />
+            <element signature="e#12367#12368#0" expanded="true" />
+            <element signature="e#12749#12750#0" expanded="true" />
+            <element signature="e#12799#12800#0" expanded="true" />
+            <element signature="e#12837#12838#0" expanded="true" />
+            <element signature="e#12887#12888#0" expanded="true" />
+            <element signature="e#13285#13286#0" expanded="true" />
+            <element signature="e#13334#13335#0" expanded="true" />
+            <element signature="e#13371#13372#0" expanded="true" />
+            <element signature="e#13420#13421#0" expanded="true" />
+            <element signature="e#14352#14353#0" expanded="true" />
+            <element signature="e#14379#14380#0" expanded="true" />
+            <element signature="e#14869#15840#0" expanded="true" />
+            <element signature="e#15839#15840#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeNaviAssitantGuideInfoProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" column="44" lean-forward="true" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+          <folding>
+            <element signature="e#10476#10477#0" expanded="true" />
+            <element signature="e#10527#10528#0" expanded="true" />
+            <element signature="e#11124#11125#0" expanded="true" />
+            <element signature="e#11171#11172#0" expanded="true" />
+            <element signature="e#15400#15401#0" expanded="true" />
+            <element signature="e#15443#15444#0" expanded="true" />
+            <element signature="e#15474#15475#0" expanded="true" />
+            <element signature="e#15517#15518#0" expanded="true" />
+            <element signature="e#15875#15876#0" expanded="true" />
+            <element signature="e#15925#15926#0" expanded="true" />
+            <element signature="e#15963#15964#0" expanded="true" />
+            <element signature="e#16013#16014#0" expanded="true" />
+            <element signature="e#16417#16418#0" expanded="true" />
+            <element signature="e#16469#16470#0" expanded="true" />
+            <element signature="e#16509#16510#0" expanded="true" />
+            <element signature="e#16561#16562#0" expanded="true" />
+            <element signature="e#16973#16974#0" expanded="true" />
+            <element signature="e#17023#17024#0" expanded="true" />
+            <element signature="e#17061#17062#0" expanded="true" />
+            <element signature="e#17111#17112#0" expanded="true" />
+            <element signature="e#17513#17514#0" expanded="true" />
+            <element signature="e#17564#17565#0" expanded="true" />
+            <element signature="e#17603#17604#0" expanded="true" />
+            <element signature="e#17654#17655#0" expanded="true" />
+            <element signature="e#18056#18057#0" expanded="true" />
+            <element signature="e#18104#18105#0" expanded="true" />
+            <element signature="e#18140#18141#0" expanded="true" />
+            <element signature="e#18188#18189#0" expanded="true" />
+            <element signature="e#19162#19163#0" expanded="true" />
+            <element signature="e#19189#19190#0" expanded="true" />
+            <element signature="e#19879#20983#0" expanded="true" />
+            <element signature="e#20982#20983#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeNaviNextTurnInfoProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83">
+          <caret line="8" column="3" lean-forward="true" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
+          <folding>
+            <element signature="e#9944#9945#0" expanded="true" />
+            <element signature="e#9995#9996#0" expanded="true" />
+            <element signature="e#10544#10545#0" expanded="true" />
+            <element signature="e#10591#10592#0" expanded="true" />
+            <element signature="e#14623#14624#0" expanded="true" />
+            <element signature="e#14666#14667#0" expanded="true" />
+            <element signature="e#14697#14698#0" expanded="true" />
+            <element signature="e#14740#14741#0" expanded="true" />
+            <element signature="e#15082#15083#0" expanded="true" />
+            <element signature="e#15127#15128#0" expanded="true" />
+            <element signature="e#15160#15161#0" expanded="true" />
+            <element signature="e#15205#15206#0" expanded="true" />
+            <element signature="e#15560#15561#0" expanded="true" />
+            <element signature="e#15605#15606#0" expanded="true" />
+            <element signature="e#15641#15642#0" expanded="true" />
+            <element signature="e#15686#15687#0" expanded="true" />
+            <element signature="e#16151#16152#0" expanded="true" />
+            <element signature="e#16201#16202#0" expanded="true" />
+            <element signature="e#16239#16240#0" expanded="true" />
+            <element signature="e#16289#16290#0" expanded="true" />
+            <element signature="e#16685#16686#0" expanded="true" />
+            <element signature="e#16736#16737#0" expanded="true" />
+            <element signature="e#16775#16776#0" expanded="true" />
+            <element signature="e#16826#16827#0" expanded="true" />
+            <element signature="e#17208#17209#0" expanded="true" />
+            <element signature="e#17249#17250#0" expanded="true" />
+            <element signature="e#17278#17279#0" expanded="true" />
+            <element signature="e#17319#17320#0" expanded="true" />
+            <element signature="e#18219#18220#0" expanded="true" />
+            <element signature="e#18246#18247#0" expanded="true" />
+            <element signature="e#18891#19941#0" expanded="true" />
+            <element signature="e#19940#19941#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeOilProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6815">
+          <caret line="386" column="56" selection-start-line="386" selection-start-column="56" selection-end-line="386" selection-end-column="56" />
+          <folding>
+            <element signature="e#7753#7754#0" expanded="true" />
+            <element signature="e#7804#7805#0" expanded="true" />
+            <element signature="e#8293#8294#0" expanded="true" />
+            <element signature="e#8340#8341#0" expanded="true" />
+            <element signature="e#11603#11604#0" expanded="true" />
+            <element signature="e#11645#11646#0" expanded="true" />
+            <element signature="e#11675#11676#0" expanded="true" />
+            <element signature="e#11717#11718#0" expanded="true" />
+            <element signature="e#12053#12054#0" expanded="true" />
+            <element signature="e#12095#12096#0" expanded="true" />
+            <element signature="e#12125#12126#0" expanded="true" />
+            <element signature="e#12167#12168#0" expanded="true" />
+            <element signature="e#12520#12521#0" expanded="true" />
+            <element signature="e#12571#12572#0" expanded="true" />
+            <element signature="e#12614#12615#0" expanded="true" />
+            <element signature="e#12665#12666#0" expanded="true" />
+            <element signature="e#13593#13594#0" expanded="true" />
+            <element signature="e#13620#13621#0" expanded="true" />
+            <element signature="e#14074#14992#0" expanded="true" />
+            <element signature="e#14991#14992#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeProtocolVersionMatchStatusProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5411">
+          <caret line="308" column="56" selection-start-line="308" selection-start-column="56" selection-end-line="308" selection-end-column="56" />
+          <folding>
+            <element signature="e#7818#7819#0" expanded="true" />
+            <element signature="e#7869#7870#0" expanded="true" />
+            <element signature="e#8496#8497#0" expanded="true" />
+            <element signature="e#8543#8544#0" expanded="true" />
+            <element signature="e#11813#11814#0" expanded="true" />
+            <element signature="e#11861#11862#0" expanded="true" />
+            <element signature="e#11897#11898#0" expanded="true" />
+            <element signature="e#11945#11946#0" expanded="true" />
+            <element signature="e#12939#12940#0" expanded="true" />
+            <element signature="e#12966#12967#0" expanded="true" />
+            <element signature="e#13416#14474#0" expanded="true" />
+            <element signature="e#14473#14474#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeProtocolVersionProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="21" column="5" lean-forward="true" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+          <folding>
+            <element signature="e#7910#7911#0" expanded="true" />
+            <element signature="e#7961#7962#0" expanded="true" />
+            <element signature="e#8522#8523#0" expanded="true" />
+            <element signature="e#8569#8570#0" expanded="true" />
+            <element signature="e#11878#11879#0" expanded="true" />
+            <element signature="e#11927#11928#0" expanded="true" />
+            <element signature="e#11964#11965#0" expanded="true" />
+            <element signature="e#12013#12014#0" expanded="true" />
+            <element signature="e#12405#12406#0" expanded="true" />
+            <element signature="e#12454#12455#0" expanded="true" />
+            <element signature="e#12491#12492#0" expanded="true" />
+            <element signature="e#12540#12541#0" expanded="true" />
+            <element signature="e#13496#13497#0" expanded="true" />
+            <element signature="e#13523#13524#0" expanded="true" />
+            <element signature="e#13983#14981#0" expanded="true" />
+            <element signature="e#14980#14981#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeStatisticsInfoProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="9" column="57" lean-forward="true" selection-start-line="9" selection-start-column="57" selection-end-line="9" selection-end-column="57" />
+          <folding>
+            <element signature="e#11056#11057#0" expanded="true" />
+            <element signature="e#11107#11108#0" expanded="true" />
+            <element signature="e#11644#11645#0" expanded="true" />
+            <element signature="e#11691#11692#0" expanded="true" />
+            <element signature="e#16134#16135#0" expanded="true" />
+            <element signature="e#16175#16176#0" expanded="true" />
+            <element signature="e#16207#16208#0" expanded="true" />
+            <element signature="e#16248#16249#0" expanded="true" />
+            <element signature="e#16682#16683#0" expanded="true" />
+            <element signature="e#16730#16731#0" expanded="true" />
+            <element signature="e#16769#16770#0" expanded="true" />
+            <element signature="e#16817#16818#0" expanded="true" />
+            <element signature="e#17299#17300#0" expanded="true" />
+            <element signature="e#17347#17348#0" expanded="true" />
+            <element signature="e#17383#17384#0" expanded="true" />
+            <element signature="e#17431#17432#0" expanded="true" />
+            <element signature="e#17802#17803#0" expanded="true" />
+            <element signature="e#17846#17847#0" expanded="true" />
+            <element signature="e#17881#17882#0" expanded="true" />
+            <element signature="e#17925#17926#0" expanded="true" />
+            <element signature="e#18381#18382#0" expanded="true" />
+            <element signature="e#18430#18431#0" expanded="true" />
+            <element signature="e#18467#18468#0" expanded="true" />
+            <element signature="e#18516#18517#0" expanded="true" />
+            <element signature="e#18916#18917#0" expanded="true" />
+            <element signature="e#18972#18973#0" expanded="true" />
+            <element signature="e#19016#19017#0" expanded="true" />
+            <element signature="e#19072#19073#0" expanded="true" />
+            <element signature="e#19498#19499#0" expanded="true" />
+            <element signature="e#19546#19547#0" expanded="true" />
+            <element signature="e#19582#19583#0" expanded="true" />
+            <element signature="e#19630#19631#0" expanded="true" />
+            <element signature="e#20003#20004#0" expanded="true" />
+            <element signature="e#20048#20049#0" expanded="true" />
+            <element signature="e#20084#20085#0" expanded="true" />
+            <element signature="e#20129#20130#0" expanded="true" />
+            <element signature="e#21146#21147#0" expanded="true" />
+            <element signature="e#21173#21174#0" expanded="true" />
+            <element signature="e#21914#22988#0" expanded="true" />
+            <element signature="e#22987#22988#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeSubscribeMobileCarLifeInfoProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="9" column="69" lean-forward="true" selection-start-line="9" selection-start-column="69" selection-end-line="9" selection-end-column="69" />
+          <folding>
+            <element signature="e#8804#8805#0" expanded="true" />
+            <element signature="e#8855#8856#0" expanded="true" />
+            <element signature="e#9482#9483#0" expanded="true" />
+            <element signature="e#9529#9530#0" expanded="true" />
+            <element signature="e#13182#13183#0" expanded="true" />
+            <element signature="e#13227#13228#0" expanded="true" />
+            <element signature="e#13260#13261#0" expanded="true" />
+            <element signature="e#13305#13306#0" expanded="true" />
+            <element signature="e#13670#13671#0" expanded="true" />
+            <element signature="e#13718#13719#0" expanded="true" />
+            <element signature="e#13758#13759#0" expanded="true" />
+            <element signature="e#13806#13807#0" expanded="true" />
+            <element signature="e#14194#14195#0" expanded="true" />
+            <element signature="e#14240#14241#0" expanded="true" />
+            <element signature="e#14274#14275#0" expanded="true" />
+            <element signature="e#14320#14321#0" expanded="true" />
+            <element signature="e#15302#15303#0" expanded="true" />
+            <element signature="e#15329#15330#0" expanded="true" />
+            <element signature="e#15869#16952#0" expanded="true" />
+            <element signature="e#16951#16952#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeTouchActionProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6833">
+          <caret line="387" column="56" selection-start-line="387" selection-start-column="56" selection-end-line="387" selection-end-column="56" />
+          <folding>
+            <element signature="e#7940#7941#0" expanded="true" />
+            <element signature="e#7991#7992#0" expanded="true" />
+            <element signature="e#8528#8529#0" expanded="true" />
+            <element signature="e#8575#8576#0" expanded="true" />
+            <element signature="e#11905#11906#0" expanded="true" />
+            <element signature="e#11948#11949#0" expanded="true" />
+            <element signature="e#11979#11980#0" expanded="true" />
+            <element signature="e#12022#12023#0" expanded="true" />
+            <element signature="e#12356#12357#0" expanded="true" />
+            <element signature="e#12394#12395#0" expanded="true" />
+            <element signature="e#12420#12421#0" expanded="true" />
+            <element signature="e#12458#12459#0" expanded="true" />
+            <element signature="e#12762#12763#0" expanded="true" />
+            <element signature="e#12800#12801#0" expanded="true" />
+            <element signature="e#12826#12827#0" expanded="true" />
+            <element signature="e#12864#12865#0" expanded="true" />
+            <element signature="e#13738#13739#0" expanded="true" />
+            <element signature="e#13765#13766#0" expanded="true" />
+            <element signature="e#14221#15179#0" expanded="true" />
+            <element signature="e#15178#15179#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeTouchEventAllDeviceProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7895">
+          <caret line="446" column="52" selection-start-line="446" selection-start-column="52" selection-end-line="446" selection-end-column="52" />
+          <folding>
+            <element signature="e#9268#9269#0" expanded="true" />
+            <element signature="e#9319#9320#0" expanded="true" />
+            <element signature="e#9904#9905#0" expanded="true" />
+            <element signature="e#9951#9952#0" expanded="true" />
+            <element signature="e#14158#14159#0" expanded="true" />
+            <element signature="e#14202#14203#0" expanded="true" />
+            <element signature="e#14234#14235#0" expanded="true" />
+            <element signature="e#14278#14279#0" expanded="true" />
+            <element signature="e#14622#14623#0" expanded="true" />
+            <element signature="e#14662#14663#0" expanded="true" />
+            <element signature="e#14690#14691#0" expanded="true" />
+            <element signature="e#14730#14731#0" expanded="true" />
+            <element signature="e#15345#15346#0" expanded="true" />
+            <element signature="e#15394#15395#0" expanded="true" />
+            <element signature="e#18301#18302#0" expanded="true" />
+            <element signature="e#18328#18329#0" expanded="true" />
+            <element signature="e#18956#19979#0" expanded="true" />
+            <element signature="e#19978#19979#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeTouchEventDeviceProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="839" column="90" selection-start-line="839" selection-start-column="90" selection-end-line="839" selection-end-column="90" />
+          <folding>
+            <element signature="e#15293#15294#0" expanded="true" />
+            <element signature="e#15344#15345#0" expanded="true" />
+            <element signature="e#15893#15894#0" expanded="true" />
+            <element signature="e#15940#15941#0" expanded="true" />
+            <element signature="e#23129#23130#0" expanded="true" />
+            <element signature="e#23169#23170#0" expanded="true" />
+            <element signature="e#23197#23198#0" expanded="true" />
+            <element signature="e#23237#23238#0" expanded="true" />
+            <element signature="e#23557#23558#0" expanded="true" />
+            <element signature="e#23600#23601#0" expanded="true" />
+            <element signature="e#23631#23632#0" expanded="true" />
+            <element signature="e#23674#23675#0" expanded="true" />
+            <element signature="e#24023#24024#0" expanded="true" />
+            <element signature="e#24071#24072#0" expanded="true" />
+            <element signature="e#24107#24108#0" expanded="true" />
+            <element signature="e#24155#24156#0" expanded="true" />
+            <element signature="e#24536#24537#0" expanded="true" />
+            <element signature="e#24585#24586#0" expanded="true" />
+            <element signature="e#24622#24623#0" expanded="true" />
+            <element signature="e#24671#24672#0" expanded="true" />
+            <element signature="e#25049#25050#0" expanded="true" />
+            <element signature="e#25093#25094#0" expanded="true" />
+            <element signature="e#25125#25126#0" expanded="true" />
+            <element signature="e#25169#25170#0" expanded="true" />
+            <element signature="e#25517#25518#0" expanded="true" />
+            <element signature="e#25561#25562#0" expanded="true" />
+            <element signature="e#25593#25594#0" expanded="true" />
+            <element signature="e#25637#25638#0" expanded="true" />
+            <element signature="e#25985#25986#0" expanded="true" />
+            <element signature="e#26029#26030#0" expanded="true" />
+            <element signature="e#26061#26062#0" expanded="true" />
+            <element signature="e#26105#26106#0" expanded="true" />
+            <element signature="e#26453#26454#0" expanded="true" />
+            <element signature="e#26497#26498#0" expanded="true" />
+            <element signature="e#26529#26530#0" expanded="true" />
+            <element signature="e#26573#26574#0" expanded="true" />
+            <element signature="e#26918#26919#0" expanded="true" />
+            <element signature="e#26961#26962#0" expanded="true" />
+            <element signature="e#26995#26996#0" expanded="true" />
+            <element signature="e#27038#27039#0" expanded="true" />
+            <element signature="e#27755#27756#0" expanded="true" />
+            <element signature="e#27806#27807#0" expanded="true" />
+            <element signature="e#30331#30332#0" expanded="true" />
+            <element signature="e#30380#30381#0" expanded="true" />
+            <element signature="e#32873#32874#0" expanded="true" />
+            <element signature="e#32924#32925#0" expanded="true" />
+            <element signature="e#35751#35752#0" expanded="true" />
+            <element signature="e#35778#35779#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeTouchEventProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="18" column="4" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="4" />
+          <folding>
+            <element signature="e#7960#7961#0" expanded="true" />
+            <element signature="e#8011#8012#0" expanded="true" />
+            <element signature="e#8542#8543#0" expanded="true" />
+            <element signature="e#8589#8590#0" expanded="true" />
+            <element signature="e#11919#11920#0" expanded="true" />
+            <element signature="e#11960#11961#0" expanded="true" />
+            <element signature="e#11989#11990#0" expanded="true" />
+            <element signature="e#12030#12031#0" expanded="true" />
+            <element signature="e#12358#12359#0" expanded="true" />
+            <element signature="e#12399#12400#0" expanded="true" />
+            <element signature="e#12428#12429#0" expanded="true" />
+            <element signature="e#12469#12470#0" expanded="true" />
+            <element signature="e#12799#12800#0" expanded="true" />
+            <element signature="e#12841#12842#0" expanded="true" />
+            <element signature="e#12871#12872#0" expanded="true" />
+            <element signature="e#12913#12914#0" expanded="true" />
+            <element signature="e#13807#13808#0" expanded="true" />
+            <element signature="e#13834#13835#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeTouchFlingProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="14" column="85" selection-start-line="14" selection-start-column="85" selection-end-line="14" selection-end-column="85" />
+          <folding>
+            <element signature="e#9393#9394#0" expanded="true" />
+            <element signature="e#9444#9445#0" expanded="true" />
+            <element signature="e#9975#9976#0" expanded="true" />
+            <element signature="e#10022#10023#0" expanded="true" />
+            <element signature="e#13883#13884#0" expanded="true" />
+            <element signature="e#13922#13923#0" expanded="true" />
+            <element signature="e#13949#13950#0" expanded="true" />
+            <element signature="e#13988#13989#0" expanded="true" />
+            <element signature="e#14300#14301#0" expanded="true" />
+            <element signature="e#14339#14340#0" expanded="true" />
+            <element signature="e#14366#14367#0" expanded="true" />
+            <element signature="e#14405#14406#0" expanded="true" />
+            <element signature="e#14717#14718#0" expanded="true" />
+            <element signature="e#14756#14757#0" expanded="true" />
+            <element signature="e#14783#14784#0" expanded="true" />
+            <element signature="e#14822#14823#0" expanded="true" />
+            <element signature="e#15134#15135#0" expanded="true" />
+            <element signature="e#15173#15174#0" expanded="true" />
+            <element signature="e#15200#15201#0" expanded="true" />
+            <element signature="e#15239#15240#0" expanded="true" />
+            <element signature="e#15565#15566#0" expanded="true" />
+            <element signature="e#15611#15612#0" expanded="true" />
+            <element signature="e#15647#15648#0" expanded="true" />
+            <element signature="e#15693#15694#0" expanded="true" />
+            <element signature="e#16064#16065#0" expanded="true" />
+            <element signature="e#16110#16111#0" expanded="true" />
+            <element signature="e#16146#16147#0" expanded="true" />
+            <element signature="e#16192#16193#0" expanded="true" />
+            <element signature="e#17113#17114#0" expanded="true" />
+            <element signature="e#17140#17141#0" expanded="true" />
+            <element signature="e#17722#18703#0" expanded="true" />
+            <element signature="e#18702#18703#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeTouchScrollProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+          <folding>
+            <element signature="e#9438#9439#0" expanded="true" />
+            <element signature="e#9489#9490#0" expanded="true" />
+            <element signature="e#10026#10027#0" expanded="true" />
+            <element signature="e#10073#10074#0" expanded="true" />
+            <element signature="e#13950#13951#0" expanded="true" />
+            <element signature="e#13989#13990#0" expanded="true" />
+            <element signature="e#14016#14017#0" expanded="true" />
+            <element signature="e#14055#14056#0" expanded="true" />
+            <element signature="e#14367#14368#0" expanded="true" />
+            <element signature="e#14406#14407#0" expanded="true" />
+            <element signature="e#14433#14434#0" expanded="true" />
+            <element signature="e#14472#14473#0" expanded="true" />
+            <element signature="e#14784#14785#0" expanded="true" />
+            <element signature="e#14823#14824#0" expanded="true" />
+            <element signature="e#14850#14851#0" expanded="true" />
+            <element signature="e#14889#14890#0" expanded="true" />
+            <element signature="e#15201#15202#0" expanded="true" />
+            <element signature="e#15240#15241#0" expanded="true" />
+            <element signature="e#15267#15268#0" expanded="true" />
+            <element signature="e#15306#15307#0" expanded="true" />
+            <element signature="e#15632#15633#0" expanded="true" />
+            <element signature="e#15678#15679#0" expanded="true" />
+            <element signature="e#15714#15715#0" expanded="true" />
+            <element signature="e#15760#15761#0" expanded="true" />
+            <element signature="e#16131#16132#0" expanded="true" />
+            <element signature="e#16177#16178#0" expanded="true" />
+            <element signature="e#16213#16214#0" expanded="true" />
+            <element signature="e#16259#16260#0" expanded="true" />
+            <element signature="e#17184#17185#0" expanded="true" />
+            <element signature="e#17211#17212#0" expanded="true" />
+            <element signature="e#17795#18783#0" expanded="true" />
+            <element signature="e#18782#18783#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeTouchSinglePointProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47">
+          <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
+          <folding>
+            <element signature="e#7669#7670#0" expanded="true" />
+            <element signature="e#7720#7721#0" expanded="true" />
+            <element signature="e#8287#8288#0" expanded="true" />
+            <element signature="e#8334#8335#0" expanded="true" />
+            <element signature="e#11549#11550#0" expanded="true" />
+            <element signature="e#11587#11588#0" expanded="true" />
+            <element signature="e#11613#11614#0" expanded="true" />
+            <element signature="e#11651#11652#0" expanded="true" />
+            <element signature="e#11955#11956#0" expanded="true" />
+            <element signature="e#11993#11994#0" expanded="true" />
+            <element signature="e#12019#12020#0" expanded="true" />
+            <element signature="e#12057#12058#0" expanded="true" />
+            <element signature="e#12951#12952#0" expanded="true" />
+            <element signature="e#12978#12979#0" expanded="true" />
+            <element signature="e#13404#14387#0" expanded="true" />
+            <element signature="e#14386#14387#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeTTSInitProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+          <folding>
+            <element signature="e#8111#8112#0" expanded="true" />
+            <element signature="e#8162#8163#0" expanded="true" />
+            <element signature="e#8675#8676#0" expanded="true" />
+            <element signature="e#8722#8723#0" expanded="true" />
+            <element signature="e#12104#12105#0" expanded="true" />
+            <element signature="e#12151#12152#0" expanded="true" />
+            <element signature="e#12186#12187#0" expanded="true" />
+            <element signature="e#12233#12234#0" expanded="true" />
+            <element signature="e#12615#12616#0" expanded="true" />
+            <element signature="e#12665#12666#0" expanded="true" />
+            <element signature="e#12703#12704#0" expanded="true" />
+            <element signature="e#12753#12754#0" expanded="true" />
+            <element signature="e#13151#13152#0" expanded="true" />
+            <element signature="e#13200#13201#0" expanded="true" />
+            <element signature="e#13237#13238#0" expanded="true" />
+            <element signature="e#13286#13287#0" expanded="true" />
+            <element signature="e#14210#14211#0" expanded="true" />
+            <element signature="e#14237#14238#0" expanded="true" />
+            <element signature="e#14723#15680#0" expanded="true" />
+            <element signature="e#15679#15680#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeVehicleInfoListProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="13" column="4" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="4" />
+          <folding>
+            <element signature="e#8562#8563#0" expanded="true" />
+            <element signature="e#8613#8614#0" expanded="true" />
+            <element signature="e#9174#9175#0" expanded="true" />
+            <element signature="e#9221#9222#0" expanded="true" />
+            <element signature="e#13173#13174#0" expanded="true" />
+            <element signature="e#13213#13214#0" expanded="true" />
+            <element signature="e#13241#13242#0" expanded="true" />
+            <element signature="e#13281#13282#0" expanded="true" />
+            <element signature="e#13897#13898#0" expanded="true" />
+            <element signature="e#13950#13951#0" expanded="true" />
+            <element signature="e#16831#16832#0" expanded="true" />
+            <element signature="e#16858#16859#0" expanded="true" />
+            <element signature="e#17412#18400#0" expanded="true" />
+            <element signature="e#18399#18400#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeVehicleInfoProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeVideoEncoderInfoProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+          <folding>
+            <element signature="e#8321#8322#0" expanded="true" />
+            <element signature="e#8372#8373#0" expanded="true" />
+            <element signature="e#8939#8940#0" expanded="true" />
+            <element signature="e#8986#8987#0" expanded="true" />
+            <element signature="e#12442#12443#0" expanded="true" />
+            <element signature="e#12484#12485#0" expanded="true" />
+            <element signature="e#12514#12515#0" expanded="true" />
+            <element signature="e#12556#12557#0" expanded="true" />
+            <element signature="e#12894#12895#0" expanded="true" />
+            <element signature="e#12937#12938#0" expanded="true" />
+            <element signature="e#12968#12969#0" expanded="true" />
+            <element signature="e#13011#13012#0" expanded="true" />
+            <element signature="e#13361#13362#0" expanded="true" />
+            <element signature="e#13407#13408#0" expanded="true" />
+            <element signature="e#13441#13442#0" expanded="true" />
+            <element signature="e#13487#13488#0" expanded="true" />
+            <element signature="e#14429#14430#0" expanded="true" />
+            <element signature="e#14456#14457#0" expanded="true" />
+            <element signature="e#14943#15948#0" expanded="true" />
+            <element signature="e#15947#15948#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeVideoFrameRateProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
+          <folding>
+            <element signature="e#7252#7253#0" expanded="true" />
+            <element signature="e#7303#7304#0" expanded="true" />
+            <element signature="e#7858#7859#0" expanded="true" />
+            <element signature="e#7905#7906#0" expanded="true" />
+            <element signature="e#10971#10972#0" expanded="true" />
+            <element signature="e#11017#11018#0" expanded="true" />
+            <element signature="e#11051#11052#0" expanded="true" />
+            <element signature="e#11097#11098#0" expanded="true" />
+            <element signature="e#12031#12032#0" expanded="true" />
+            <element signature="e#12058#12059#0" expanded="true" />
+            <element signature="e#12456#13428#0" expanded="true" />
+            <element signature="e#13427#13428#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeSubscribeMobileCarLifeInfoListProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="11" column="75" selection-start-line="11" selection-start-column="75" selection-end-line="11" selection-end-column="75" />
+          <folding>
+            <element signature="e#9612#9613#0" expanded="true" />
+            <element signature="e#9663#9664#0" expanded="true" />
+            <element signature="e#10314#10315#0" expanded="true" />
+            <element signature="e#10361#10362#0" expanded="true" />
+            <element signature="e#14778#14779#0" expanded="true" />
+            <element signature="e#14818#14819#0" expanded="true" />
+            <element signature="e#14846#14847#0" expanded="true" />
+            <element signature="e#14886#14887#0" expanded="true" />
+            <element signature="e#19186#19187#0" expanded="true" />
+            <element signature="e#19213#19214#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/connect/CommandUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="38" column="45" lean-forward="true" selection-start-line="38" selection-start-column="45" selection-end-line="38" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/connect/ConnectManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="68" column="41" lean-forward="true" selection-start-line="68" selection-start-column="41" selection-end-line="68" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/connect/ConnectSocket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="355" column="73" lean-forward="true" selection-start-line="355" selection-start-column="73" selection-end-line="355" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/connect/AOAConnectManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="410" selection-start-line="410" selection-end-line="410" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeAuthenRequestProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="22" column="4" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeAuthenResponseProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="22" column="4" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeAuthenResultProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/protobuf/CarlifeAccelerationProto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="75" column="7" lean-forward="true" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
+          <folding>
+            <element signature="e#654#655#0" expanded="true" />
+            <element signature="e#690#691#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/util/CommonParams.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1556">
+          <caret line="144" column="60" lean-forward="true" selection-start-line="144" selection-start-column="60" selection-end-line="144" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/didi365/carlife/android/phone/connect/DecodeUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

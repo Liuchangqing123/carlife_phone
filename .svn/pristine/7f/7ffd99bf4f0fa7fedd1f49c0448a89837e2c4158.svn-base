@@ -1,0 +1,103 @@
+LOCAL_PATH:= $(call my-dir)
+include $(CLEAR_VARS)
+
+ANDROID_INC_DIR := $(LOCAL_PATH)/
+ANDROID_LIB_DIR := $(LOCAL_PATH)/libs
+
+#makefile compile pre-define
+dll := 1
+alac := 1
+openssl := 0
+debug := 0
+linux := 1
+stub := 1     
+ipc  := 0
+
+#Flags
+COMMONFLAGS		+= -D__STDC_LIMIT_MACROS=1
+COMMONFLAGS		+= -D_GNU_SOURCE
+ifneq ($(alac),1)
+COMMONFLAGS		+= -DAIRPLAY_ALAC=0
+COMMONFLAGS		+= -DAUDIO_CONVERTER_ALAC=0
+endif
+COMMONFLAGS		+= -DCFCOMPAT_NOTIFICATIONS_ENABLED=0
+COMMONFLAGS		+= -DCFL_BINARY_PLISTS=1
+COMMONFLAGS		+= -DCFLITE_ENABLED=1
+COMMONFLAGS		+= -DDEBUG_CF_OBJECTS_ENABLED=1
+COMMONFLAGS		+= -DDEBUG_EXPORT_ERROR_STRINGS=1
+
+ifeq ($(debug),1)
+COMMONFLAGS		+= -DDEBUG=1
+else
+COMMONFLAGS		+= -DNDEBUG
+endif
+
+ifeq ($(ipc),1)
+COMMONFLAGS		+= -DHIDUTILS_IPC=1
+COMMONFLAGS		+= -DSCREENUTILS_IPC=1
+COMMONFLAGS		+= -DAIRPLAY_IPC_SERVER=1
+endif
+
+ifneq ($(openssl),1)
+COMMONFLAGS		+= -DAES_UTILS_HAS_GLADMAN_GCM=0
+COMMONFLAGS		+= -DAES_UTILS_USE_GLADMAN_AES=1
+COMMONFLAGS		+= -DTARGET_HAS_MD5_UTILS=1
+COMMONFLAGS		+= -DTARGET_HAS_SHA_UTILS=1
+COMMONFLAGS		+= -DTARGET_NO_OPENSSL=1
+COMMONFLAGS		+= -DUSE_VIA_ACE_IF_PRESENT=0
+endif
+
+COMMONFLAGS		+= -fPIC
+
+LOCAL_CFLAGS += $(COMMONFLAGS) -Os
+LOCAL_CPPFLAGS += $(COMMONFLAGS) -Os
+LOCAL_CFLAGS += -DHAVE_ANDROID_OS -DHAVE_PTHREADS -DNDEBUG -DIS_ANDROID_24 -march=armv7-a -mfpu=neon -mfloat-abi=softfp
+LOCAL_CFLAGS += -Wno-multichar -Wno-deprecated-declarations
+# for mdns
+LOCAL_CFLAGS += -DHAVE_IPV6
+
+SRC_DIR := $(LOCAL_PATH)/../src
+
+MDNS_DIR := $(LOCAL_PATH)/../external/mdnsresponder
+EXTERNAL_INC_DIR := $(LOCAL_PATH)/../external/inc
+EXTERNAL_LIBS_DIR := $(LOCAL_PATH)/../external/libs
+
+LOCAL_SRC_FILES := $(SRC_DIR)/tcpsocket.cpp \
+                   $(SRC_DIR)/sys_log.cpp \
+                   $(SRC_DIR)/hqueue.cpp \
+                   $(SRC_DIR)/sys_os.cpp \
+                   $(SRC_DIR)/screen_record.cpp \
+                   $(SRC_DIR)/audio.cpp \
+                   $(SRC_DIR)/main.cpp
+
+LOCAL_MODULE:= carlife
+
+LOCAL_C_INCLUDES := $(EXTERNAL_INC_DIR) \
+										$(MDNS_DIR)/mDNSCore \
+										$(MDNS_DIR)/mDNSPosix \
+										$(SRC_DIR) \
+                    $(LOCAL_PATH) \
+                    $(ANDROID_INC_DIR)/frameworks/base/include \
+									  $(ANDROID_INC_DIR)/frameworks/base/native/include \
+									  $(ANDROID_INC_DIR)/system/core/include \
+									  $(ANDROID_INC_DIR)/system/media/audio/include \
+									  $(ANDROID_INC_DIR)/hardware/libhardware/include \
+									  $(ANDROID_INC_DIR)/frameworks/native/opengl/include \
+									  $(ANDROID_INC_DIR)/frameworks/native/include \
+									  $(ANDROID_INC_DIR)/frameworks/av/include \
+									  $(ANDROID_INC_DIR)/frameworks/av/media/libstagefright \
+									  $(ANDROID_INC_DIR)/frameworks/native/include/media/openmax \
+									  $(ANDROID_INC_DIR)/frameworks/av/include/media/stagefright/foundation \
+									  $(ANDROID_INC_DIR)/libnativehelper/include \
+
+LOCAL_LDLIBS := -landroid -llog \
+	    					$(ANDROID_LIB_DIR)/libutils.so \
+	    					$(ANDROID_LIB_DIR)/libgui.so \
+	    					$(ANDROID_LIB_DIR)/libui.so \
+	    					$(ANDROID_LIB_DIR)/libinput.so \
+	    					$(ANDROID_LIB_DIR)/libbinder.so \
+	    					$(ANDROID_LIB_DIR)/libmedia.so \
+	    					$(ANDROID_LIB_DIR)/libstagefright.so \
+	    					$(ANDROID_LIB_DIR)/libstagefright_foundation.so \
+
+include $(BUILD_EXECUTABLE)

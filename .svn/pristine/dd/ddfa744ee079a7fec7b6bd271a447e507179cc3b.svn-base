@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\frag_help_main.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout-hdpi\\frag_help_main.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\frag_exception.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout-hdpi\\frag_exception.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\frag_usb_help.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout-hdpi\\frag_usb_help.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\frag_help_apple.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout-hdpi\\frag_help_apple.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\frag_wifi_help.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout-hdpi\\frag_wifi_help.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\frag_authorization_request_help.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout-hdpi\\frag_authorization_request_help.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\frag_main.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout-hdpi\\frag_main.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\frag_help_android.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout-hdpi\\frag_help_android.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\carlife_common_title_bar_new.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout-hdpi\\carlife_common_title_bar_new.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout-hdpi-v4\\frag_ncm_help.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout-hdpi\\frag_ncm_help.xml"
+    }
+]

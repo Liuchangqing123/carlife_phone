@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="F:\project\apollo-DuerOS\CarLife-Android-Vehicle\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="F:\project\apollo-DuerOS\CarLife-Android-Vehicle\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-22.2.0_a49f3b0e2e77d1c6689af94f9905fa9a0e43066d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\project\apollo-DuerOS\CarLife-Android-Vehicle\libs\log4j-1.2.15.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="f0a0d2e29ed910808c33135a3a5a51bba6358f7b">
+        <dex dex="F:\project\apollo-DuerOS\CarLife-Android-Vehicle\build\intermediates\transforms\dex\debug\folders\1000\2\log4j-1.2.15_8a11a0ae61c381161695aae5927912288ec92456\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\project\apollo-DuerOS\CarLife-Android-Vehicle\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="F:\project\apollo-DuerOS\CarLife-Android-Vehicle\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-22.2.0_a20a67513b27b0f410bd6a8071dbd15a5a87f2e9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\project\apollo-DuerOS\CarLife-Android-Vehicle\libs\protobuf-java-2.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="2a95d3e6df137d3369cc479ce7ad77703e430b2b">
+        <dex dex="F:\project\apollo-DuerOS\CarLife-Android-Vehicle\build\intermediates\transforms\dex\debug\folders\1000\2\protobuf-java-2.2.0_f60ab8931054aab0f3a37cea9894e10a16bdbc42\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\project\apollo-DuerOS\CarLife-Android-Vehicle\libs\nineoldandroids-2.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="856038d24782adb0f45070fee0006b39ef726284">
+        <dex dex="F:\project\apollo-DuerOS\CarLife-Android-Vehicle\build\intermediates\transforms\dex\debug\folders\1000\2\nineoldandroids-2.4.0_75c51fac9c8b919886c5ea4029f8ccc98c711fa5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\project\apollo-DuerOS\CarLife-Android-Vehicle\libs\bcprov-jdk15-146.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="d726ceb2dcc711ef066cc639c12d856128ea1ef1">
+        <dex dex="F:\project\apollo-DuerOS\CarLife-Android-Vehicle\build\intermediates\transforms\dex\debug\folders\1000\2\bcprov-jdk15-146_cc32759fbcdb3a6cc3abb8d7f1df864e373e0656\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\project\apollo-DuerOS\CarLife-Android-Vehicle\libs\galaxy_lite.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="1af086ab169ee656b01d1a01f6721a894f5e0ba0">
+        <dex dex="F:\project\apollo-DuerOS\CarLife-Android-Vehicle\build\intermediates\transforms\dex\debug\folders\1000\2\galaxy_lite_c37ebb0693dbd7bfce968d00969f504bd42da5a6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\project\apollo-DuerOS\CarLife-Android-Vehicle\libs\slf4j-android-1.6.1-RC1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="a0b527e8aabcc1f1e97d1674dc3f4f0794ec5df1">
+        <dex dex="F:\project\apollo-DuerOS\CarLife-Android-Vehicle\build\intermediates\transforms\dex\debug\folders\1000\2\slf4j-android-1.6.1-RC1_6a9a228c399dbc9901446dc24d5d3215c56415f3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Dotdee\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.3"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="F:\project\apollo-DuerOS\CarLife-Android-Vehicle\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-22.2.0_7081cff8c811b14376e036eb9d4a0cb74194714c\classes.dex" />
+    </item>
+
+</items>

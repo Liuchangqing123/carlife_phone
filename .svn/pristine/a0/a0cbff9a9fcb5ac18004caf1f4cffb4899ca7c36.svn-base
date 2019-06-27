@@ -1,0 +1,28 @@
+[
+    {
+        "outputFile": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endLine": 4,
+                    "endColumn": 12,
+                    "endOffset": 187
+                },
+                "from": {
+                    "file": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\values-v11\\styles.xml",
+                    "position": {
+                        "startLine": 24,
+                        "startColumn": 4,
+                        "startOffset": 1023,
+                        "endLine": 26,
+                        "endColumn": 12,
+                        "endOffset": 1157
+                    }
+                }
+            }
+        ]
+    }
+]

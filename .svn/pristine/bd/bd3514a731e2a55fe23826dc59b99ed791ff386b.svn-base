@@ -1,0 +1,42 @@
+package com.didi365.carlife.android.phone.connect;
+
+/**
+ * Created by zheng on 2019/3/29
+ */
+public class DecodeUtil {
+
+    private DecoderThread decoderThread = null;
+    private static DecodeUtil mInstance = null;
+
+    private DecodeUtil() {
+    }
+
+    public static DecodeUtil getInstance() {
+        if (mInstance == null) {
+            mInstance = new DecodeUtil();
+        }
+        return mInstance;
+    }
+
+    public void startDecode() {
+        decoderThread = new DecoderThread();
+        decoderThread.start();
+    }
+
+    private class DecoderThread extends Thread {
+
+        private boolean isRunning = true;
+
+        @Override
+        public void run() {
+            int flag = -1;
+            byte inputData[] = new byte[1000000];
+
+            while (isRunning) {
+
+                ConnectManager.getInstance().readVideoData(inputData, inputData.length);
+
+            }
+        }
+    }
+}

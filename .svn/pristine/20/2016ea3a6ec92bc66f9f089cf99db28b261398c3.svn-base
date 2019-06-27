@@ -1,0 +1,113 @@
+package com.didi365.carlife.android.phone.util;
+
+import com.baidu.carlife.protobuf.CarlifeMusicInitProto;
+import com.didi365.carlife.android.phone.connect.AOAAccessorySetup;
+import com.didi365.carlife.android.phone.connect.ConnectManager;
+import com.didi365.carlife.android.phone.encryption.AESManager;
+import com.didi365.carlife.android.phone.encryption.EncryptSetupManager;
+import com.didi365.carlife.android.phone.logic.CarlifeDeviceInfoManager;
+
+/**
+ * Created by zheng on 2019/4/8
+ */
+public class AudioPlayerUtil {
+
+    private final String TAG = AudioPlayerUtil.class.getSimpleName();
+
+    private static AudioPlayerUtil mInstance = null;
+
+    private MusicPCMThread musicPCMReceiveThread = null;
+
+    private final int LEN_OF_FRAME_HEAD = 4;
+    private final int LEN_OF_MSG_HEAD = 8;
+
+    private int lenMsgData = -1;
+
+    private byte[] head = new byte[LEN_OF_MSG_HEAD];
+
+    private boolean isRunning = false;
+
+    private AESManager mWriteAESManager = new AESManager();
+
+    private AudioPlayerUtil() {
+        System.arraycopy(ByteConvert.intToBytes(CommonParams.MSG_CHANNEL_ID_AUDIO), 0, head, 0, 4);
+
+        CarlifeMusicInitProto.CarlifeMusicInit.Builder builder = CarlifeMusicInitProto.CarlifeMusicInit.newBuilder();
+        builder.setSampleRate(48000);
+        builder.setChannelConfig(2);
+        builder.setSampleFormat(16);
+        CarlifeMusicInitProto.CarlifeMusicInit carlifeMusicInit = builder.build();
+        byte[] audioData = carlifeMusicInit.toByteArray();
+        byte[] packageData = new byte[CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE + audioData.length];
+
+        System.arraycopy(ByteConvert.intToBytes(CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE + audioData.length), 0, head, 4, 4);
+        System.arraycopy(ByteConvert.intToBytes(audioData.length), 0, packageData, 0, 4);
+        System.arraycopy(ByteConvert.longToBytesLowbyte(System.currentTimeMillis()), 0, packageData, 4, 4);
+        System.arraycopy(ByteConvert.intToBytes(CommonParams.MSG_MEDIA_INIT), 0, packageData, 8, 4);
+        System.arraycopy(audioData, 0, packageData, CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE, audioData.length);
+
+        AOAAccessorySetup.getInstance().bulkTransferOut(head, LEN_OF_MSG_HEAD, packageData, packageData.length);
+
+//        CarlifeDeviceInfoManager.getInstance().sendCarlifeWakeUpMICRecord();
+    }
+
+    public static AudioPlayerUtil getInstance() {
+        if (mInstance == null) {
+            mInstance = new AudioPlayerUtil();
+        }
+        return mInstance;
+    }
+
+    public void startDecode() {
+        isRunning = true;
+        if (musicPCMReceiveThread == null) {
+            musicPCMReceiveThread = new MusicPCMThread();
+            musicPCMReceiveThread.start();
+        }
+    }
+
+    public void stopDecode() {
+        isRunning = false;
+        musicPCMReceiveThread = null;
+    }
+
+    private class MusicPCMThread extends Thread {
+
+        @Override
+        public void run() {
+            LogUtil.e(TAG, "START THREAD AUDIO RUN");
+            byte[] inputData = new byte[10000];
+            int ret = -1;
+            while (isRunning) {
+                ret = ConnectManager.getInstance().readAudioData(inputData, 0, LEN_OF_FRAME_HEAD);
+                if (ret == -1) {
+                    continue;
+                }
+                lenMsgData = ((inputData[0] << 24) & 0xff000000)
+                        + ((inputData[1] << 16) & 0xff0000) + ((inputData[2] << 8) & 0xff00)
+                        + ((inputData[3] << 0) & 0xff);
+                LogUtil.e(TAG, "lenMsgData=" + lenMsgData);
+                if(inputData.length < lenMsgData + CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE) {
+                    inputData = new byte[lenMsgData + CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE];
+                }
+                ConnectManager.getInstance().readAudioData(inputData, CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE, lenMsgData);
+
+                if (EncryptSetupManager.getInstance().isEncryptEnable()) {
+                    byte[] encrypteData = mWriteAESManager.encrypt(inputData, CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE, lenMsgData);
+                    if (encrypteData.length + CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE > inputData.length) {
+                        inputData = new byte[encrypteData.length + CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE];
+                    }
+                    System.arraycopy(encrypteData, 0, inputData, CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE, encrypteData.length);
+                    lenMsgData = encrypteData.length;
+                }
+
+                System.arraycopy(ByteConvert.intToBytes(CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE + lenMsgData), 0, head, 4, 4);
+
+                System.arraycopy(ByteConvert.intToBytes(lenMsgData), 0, inputData, 0, 4);
+                System.arraycopy(ByteConvert.longToBytesLowbyte(System.currentTimeMillis()), 0, inputData, 4, 4);
+                System.arraycopy(ByteConvert.intToBytes(CommonParams.MSG_MEDIA_DATA), 0, inputData, 8, 4);
+                AOAAccessorySetup.getInstance().bulkTransferOut(head, LEN_OF_MSG_HEAD, inputData, CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE + lenMsgData);
+            }
+        }
+    }
+}

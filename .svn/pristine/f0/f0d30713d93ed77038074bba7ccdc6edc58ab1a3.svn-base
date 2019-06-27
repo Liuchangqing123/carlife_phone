@@ -1,0 +1,199 @@
+package com.didi365.carlife.android.phone;
+
+import android.os.Message;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.View;
+import android.widget.Toast;
+import com.baidu.carlife.protobuf.CarlifeDeviceInfoProto;
+import com.baidu.carlife.protobuf.CarlifeModuleStatusProto;
+import com.baidu.carlife.protobuf.CarlifeProtocolVersionMatchStatusProto;
+import com.baidu.carlife.protobuf.CarlifeVideoEncoderInfoProto;
+import com.camera.CameraSurfaceHolder;
+import com.didi365.carlife.android.phone.connect.AOAConnectManager;
+import com.didi365.carlife.android.phone.connect.CarlifeCmdMessage;
+import com.didi365.carlife.android.phone.connect.ConnectClient;
+import com.didi365.carlife.android.phone.connect.ConnectManager;
+import com.didi365.carlife.android.phone.encryption.AESManager;
+import com.didi365.carlife.android.phone.encryption.EncryptSetupManager;
+import com.didi365.carlife.android.phone.logic.CarlifeDeviceInfoManager;
+import com.didi365.carlife.android.phone.logic.CarlifeProtocolVersionInfoManager;
+import com.didi365.carlife.android.phone.message.MsgBaseHandler;
+import com.didi365.carlife.android.phone.message.MsgHandlerCenter;
+import com.didi365.carlife.android.phone.util.ByteConvert;
+import com.didi365.carlife.android.phone.util.CarlifeUtil;
+import com.didi365.carlife.android.phone.util.CommonParams;
+import com.didi365.carlife.android.phone.util.DigitalTrans;
+import com.didi365.carlife.android.phone.util.LogUtil;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.video.DlnaMediaModel;
+import com.video.PlayState;
+import com.video.PlayerEngineListener;
+import com.video.VideoPlayEngineImpl;
+
+public class MainActivity extends AppCompatActivity implements SurfaceHolder.Callback {
+
+    private final String TAG = "AccessoryPhone";
+
+    private SurfaceView surfaceView;
+    private SurfaceHolder holder = null;
+
+    private CameraSurfaceHolder mCameraSurfaceHolder = new CameraSurfaceHolder();
+
+    private MsgBaseHandler mMainActivityHandler = null;
+
+    private VideoPlayEngineImpl mPlayerEngineImpl;
+    private VideoPlayEngineListener mPlayEngineListener;
+
+    private AESManager mWriteAESManager = new AESManager();
+    private AESManager mReadAESManager = new AESManager();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        surfaceView = findViewById(R.id.surfaceView);
+        mCameraSurfaceHolder.setCameraSurfaceHolder(MainActivity.this, surfaceView);
+        holder = surfaceView.getHolder();
+        holder.addCallback(this);
+        holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+
+        mPlayerEngineImpl = new VideoPlayEngineImpl(this, holder);
+        mPlayEngineListener = new VideoPlayEngineListener();
+        mPlayerEngineImpl.setPlayerListener(mPlayEngineListener);
+
+        mMainActivityHandler = new MsgMainActivityHandler();
+        MsgHandlerCenter.registerMessageHandler(mMainActivityHandler);
+
+        CarlifeUtil.getInstance().init(this);
+        CarlifeDeviceInfoManager.getInstance().init();
+        CarlifeProtocolVersionInfoManager.getInstance().init();
+        ConnectClient.getInstance().init(this);
+        ConnectManager.getInstance().init(this);
+        AOAConnectManager.getInstance().init(this);
+        ConnectManager.getInstance().startConnectThread("MainActivity onCreate");
+
+        /*
+        CarlifeProtocolVersionMatchStatusProto.CarlifeProtocolVersionMatchStatus.Builder builderMatch = CarlifeProtocolVersionMatchStatusProto.CarlifeProtocolVersionMatchStatus.newBuilder();
+        builderMatch.setMatchStatus(CommonParams.PROTOCOL_VERSION_MATCH);
+        CarlifeProtocolVersionMatchStatusProto.CarlifeProtocolVersionMatchStatus mProtocolMatchStatus = builderMatch.build();
+
+        CarlifeCmdMessage carlifeCmdMessage = new CarlifeCmdMessage(true);
+        carlifeCmdMessage.setServiceType(CommonParams.MSG_CMD_PROTOCOL_VERSION_MATCH_STATUS);
+        carlifeCmdMessage.setData(mProtocolMatchStatus.toByteArray());
+        carlifeCmdMessage.setLength(mProtocolMatchStatus.getSerializedSize());
+
+        LogUtil.d(TAG, "unencrypt " + ByteConvert.printHexString(carlifeCmdMessage.getData(), carlifeCmdMessage.getLength()));
+
+        byte[] encrypt = mWriteAESManager.encrypt(carlifeCmdMessage.getData(),carlifeCmdMessage.getLength());
+        LogUtil.d(TAG, "encrypt " + ByteConvert.printHexString(encrypt, encrypt.length));
+        carlifeCmdMessage.setData(encrypt);
+        carlifeCmdMessage.setLength(encrypt.length);
+
+        byte[] decrypt = mReadAESManager.decrypt(carlifeCmdMessage.getData(), carlifeCmdMessage.getLength());
+        CarlifeProtocolVersionMatchStatusProto.CarlifeProtocolVersionMatchStatus matchStatus;
+        try {
+            matchStatus = CarlifeProtocolVersionMatchStatusProto.CarlifeProtocolVersionMatchStatus.parseFrom(decrypt);
+            LogUtil.d(TAG, "deVideoInfo " + matchStatus);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }*/
+    }
+
+    @Override
+    public void surfaceCreated(SurfaceHolder surfaceHolder) {
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+
+    }
+
+    private class MsgMainActivityHandler extends MsgBaseHandler {
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            LogUtil.e(TAG, "handleMessage get msg: " + DigitalTrans.algorismToHEXString(msg.what, 8));
+            switch (msg.what) {
+                case CommonParams.MSG_CONNECT_STATUS_CONNECTED:
+                    if (!mCameraSurfaceHolder.startCamara()) {
+                        DlnaMediaModel mediaModel = new DlnaMediaModel();
+                        mediaModel.setUrl("/sdcard/test.avi");
+                        startPlay(mediaModel);
+                    }
+                    break;
+                case CommonParams.MSG_CONNECT_STATUS_DISCONNECTED:
+                    mCameraSurfaceHolder.stopCamara();
+                    break;
+            }
+        }
+
+        @Override
+        public void careAbout() {
+            addMsg(CommonParams.MSG_CONNECT_STATUS_CONNECTED);
+            addMsg(CommonParams.MSG_CONNECT_STATUS_DISCONNECTED);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MsgHandlerCenter.unRegisterMessageHandler(mMainActivityHandler);
+    }
+
+    public void startPlay(DlnaMediaModel mediaModel) {
+        mPlayerEngineImpl.playMedia(mediaModel);
+    }
+
+    private class VideoPlayEngineListener implements PlayerEngineListener {
+
+        @Override
+        public void onTrackPlay(DlnaMediaModel itemInfo) {
+            PlayState.playRate = 1;
+        }
+
+        @Override
+        public void onTrackStop(DlnaMediaModel itemInfo) {
+            PlayState.playRate = 0;
+            PlayState.playDuration = 0;
+            PlayState.playPosition = 0;
+        }
+
+        @Override
+        public void onTrackPause(DlnaMediaModel itemInfo) {
+            PlayState.playRate = 0;
+        }
+
+        @Override
+        public void onTrackPrepareSync(DlnaMediaModel itemInfo) {
+        }
+
+        @Override
+        public void onTrackPrepareComplete(DlnaMediaModel itemInfo) {
+            int duration = mPlayerEngineImpl.getDuration();
+            PlayState.playDuration = duration / 1000;
+        }
+
+        @Override
+        public void onTrackStreamError(DlnaMediaModel itemInfo) {
+            mPlayerEngineImpl.stop();
+        }
+
+        @Override
+        public void onTrackPlayComplete(DlnaMediaModel itemInfo) {
+            startPlay(itemInfo);
+        }
+    }
+
+    public void button_onClick(View view) {
+        Toast.makeText(this, "button click", Toast.LENGTH_LONG).show();
+    }
+}

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CarLife-Android-Phone</string>
+    <string name="carlife_toast_crash">非常抱歉，CarLife出现异常，即将退出！</string>
+</resources>

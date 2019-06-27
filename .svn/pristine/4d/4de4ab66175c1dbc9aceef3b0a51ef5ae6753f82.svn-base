@@ -1,0 +1,192 @@
+-- Merging decision tree log ---
+manifest
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:19:1-107:12
+	package
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:20:5-39
+	android:versionName
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:22:5-32
+		INJECTED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml
+		INJECTED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml
+	android:versionCode
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:21:5-29
+		INJECTED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml
+		INJECTED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml
+	xmlns:android
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:19:11-69
+uses-sdk
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:24:5-26:41
+MERGED from [com.android.support:multidex:1.0.1] F:\project\apollo-DuerOS\CarLife-Android-Vehicle\build\intermediates\exploded-aar\com.android.support\multidex\1.0.1\AndroidManifest.xml:18:5-42
+MERGED from [com.android.support:support-v4:22.2.0] F:\project\apollo-DuerOS\CarLife-Android-Vehicle\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:20:5-43
+	android:targetSdkVersion
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:26:9-38
+	android:minSdkVersion
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:25:9-35
+uses-feature#android.hardware.usb.host
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:28:5-62
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:28:19-59
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:30:5-80
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:30:22-77
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:31:5-79
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:31:22-76
+uses-permission#android.permission.INTERNET
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:32:5-67
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:32:22-64
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:33:5-81
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:33:22-78
+uses-permission#android.permission.WRITE_SETTINGS
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:34:5-73
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:34:22-70
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:35:5-71
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:35:22-68
+uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:36:5-84
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:36:22-81
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:37:5-74
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:37:22-71
+uses-permission#android.permission.BLUETOOTH
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:38:5-68
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:38:22-65
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:39:5-75
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:39:22-72
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:40:5-81
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:40:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:41:5-79
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:41:22-76
+application
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:43:5-105:19
+MERGED from [com.android.support:support-v4:22.2.0] F:\project\apollo-DuerOS\CarLife-Android-Vehicle\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\AndroidManifest.xml:22:5-20
+	android:label
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:47:9-41
+	android:testOnly
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:49:9-33
+	android:allowBackup
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:45:9-36
+	android:icon
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:46:9-45
+	android:persistent
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:48:9-35
+	android:theme
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:50:9-40
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:44:9-67
+activity#com.baidu.carlifevehicle.BaseActivity
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:51:9-58:20
+	android:label
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:53:13-56
+	android:parentActivityName
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:54:13-81
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:52:13-65
+meta-data#android.support.PARENT_ACTIVITY
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:55:13-57:75
+	android:value
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:57:17-72
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:56:17-63
+activity#com.baidu.carlifevehicle.CarlifeActivity
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:59:9-72:20
+	android:clearTaskOnLaunch
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:61:13-45
+	android:screenOrientation
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:64:13-50
+	android:launchMode
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:63:13-44
+	android:windowSoftInputMode
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:66:13-64
+	android:configChanges
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:62:13-104
+	android:theme
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:65:13-47
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:60:13-68
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:67:13-71:29
+action#android.intent.action.MAIN
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:68:17-69
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:68:25-66
+category#android.intent.category.LAUNCHER
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:70:17-77
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:70:27-74
+receiver#com.baidu.carlifevehicle.audioplayer.MediaButtonReceiver
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:74:9-80:20
+	android:exported
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:76:13-37
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:75:13-84
+intent-filter#android.intent.action.MEDIA_BUTTON
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:77:13-79:29
+	android:priority
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:77:28-51
+action#android.intent.action.MEDIA_BUTTON
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:78:17-77
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:78:25-74
+receiver#com.baidu.carlifevehicle.connect.AOAAccessoryReceiver
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:81:9-92:20
+	android:exported
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:82:9-33
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:81:19-87
+intent-filter#android.hardware.usb.action.USB_DEVICE_ATTACHED+android.hardware.usb.action.USB_DEVICE_DETACHED+com.baidu.carlifevehicle.connect.USB_PERMISSION
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:83:13-87:29
+action#android.hardware.usb.action.USB_DEVICE_ATTACHED
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:84:17-90
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:84:25-87
+action#android.hardware.usb.action.USB_DEVICE_DETACHED
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:85:17-90
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:85:25-87
+action#com.baidu.carlifevehicle.connect.USB_PERMISSION
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:86:17-90
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:86:25-87
+meta-data#android.hardware.usb.action.USB_DEVICE_ATTACHED
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:89:13-91:57
+	android:resource
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:91:17-54
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:90:17-79
+receiver#com.baidu.carlifevehicle.broadcast.BroadcastActionReceiver
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:93:9-100:20
+	android:exported
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:94:9-33
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:93:19-92
+intent-filter#android.hardware.usb.action.USB_DEVICE_ATTACHED+android.hardware.usb.action.USB_DEVICE_DETACHED+com.baidu.carlifevehicle.broadcast.EXIT_APP
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:95:13-99:29
+action#com.baidu.carlifevehicle.broadcast.EXIT_APP
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:98:17-86
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:98:25-83
+service#com.baidu.carlifevehicle.connect.ConnectService
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:102:9-83
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:102:18-80
+service#com.baidu.carlifevehicle.service.RecordService
+ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:103:9-82
+	android:name
+		ADDED from F:\project\apollo-DuerOS\CarLife-Android-Vehicle\AndroidManifest.xml:103:18-79

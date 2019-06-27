@@ -1,0 +1,71 @@
+package com.didi365.carlife.android.phone.connect;
+
+import com.didi365.carlife.android.phone.util.ByteConvert;
+import com.didi365.carlife.android.phone.util.CommonParams;
+import com.didi365.carlife.android.phone.util.LogUtil;
+
+/**
+ * Created by zheng on 2019/3/29
+ */
+public class DecodeUtil {
+
+    private final String TAG = DecodeUtil.class.getSimpleName();
+
+    private DecoderThread decoderThread = null;
+    private static DecodeUtil mInstance = null;
+
+    private final int FRAME_LENGTH = 4;
+    private final int LEN_OF_MSG_HEAD = 8;
+
+    private byte[] head = new byte[LEN_OF_MSG_HEAD];
+
+    private int lenMsgHead = -1;
+    private int lenMsgData = -1;
+
+    private DecodeUtil() {
+        System.arraycopy(ByteConvert.intToBytes(CommonParams.MSG_CHANNEL_ID_VIDEO), 0, head, 0, 4);
+    }
+
+    public static DecodeUtil getInstance() {
+        if (mInstance == null) {
+            mInstance = new DecodeUtil();
+        }
+        return mInstance;
+    }
+
+    public void startDecode() {
+        decoderThread = new DecoderThread();
+        decoderThread.start();
+    }
+
+    private class DecoderThread extends Thread {
+        private boolean isRunning = true;
+
+        @Override
+        public void run() {
+            byte[] msgHead = new byte[FRAME_LENGTH];
+            while (isRunning) {
+                ConnectManager.getInstance().readVideoData(msgHead, msgHead.length);
+                LogUtil.e(TAG, "msgHead " + ByteConvert.printHexString(msgHead, msgHead.length));
+                lenMsgData = ByteConvert.bytesToInt(msgHead);
+                LogUtil.e(TAG, "lenMsgData " + lenMsgData);
+                byte[] msgData = new byte[lenMsgData];
+                ConnectManager.getInstance().readVideoData(msgData, lenMsgData);
+                lenMsgHead = CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE;
+
+                System.arraycopy(ByteConvert.intToBytes(lenMsgHead + lenMsgData), 0, head, 4, 4);
+
+                byte[] packageHead = new byte[CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE];
+                byte[] packageData = new byte[CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE + lenMsgData];
+                System.arraycopy(msgHead, 0, packageHead, 0, 4);
+                System.arraycopy(ByteConvert.longToBytesLowbyte(System.currentTimeMillis()), 0, packageHead, 4, 4);
+
+                System.arraycopy(packageHead, 0, packageData, 0, CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE);
+                System.arraycopy(msgData, 0, packageData, CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE, lenMsgData);
+
+                LogUtil.e(TAG, "AOA send cmdHead " + ByteConvert.printHexString(head, head.length));
+                AOAAccessorySetup.getInstance().bulkTransferOut(head, LEN_OF_MSG_HEAD, packageData, packageData.length);
+            }
+        }
+    }
+}

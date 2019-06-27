@@ -1,0 +1,145 @@
+package com.didi365.carlife.android.phone.util;
+
+import com.didi365.carlife.android.phone.CarlifePhoneApplication;
+import com.didi365.carlife.android.phone.connect.AOAAccessorySetup;
+import com.didi365.carlife.android.phone.connect.ConnectManager;
+import com.didi365.carlife.android.phone.encryption.AESManager;
+import com.didi365.carlife.android.phone.encryption.EncryptSetupManager;
+
+/**
+ * Created by zheng on 2019/3/29
+ */
+public class DecodeUtil {
+
+    private final String TAG = DecodeUtil.class.getSimpleName();
+
+    private DecoderThread decoderThread = null;
+    private static DecodeUtil mInstance = null;
+
+    private final int LEN_OF_FRAME_HEAD = 4;
+    private final int LEN_OF_MSG_HEAD = 8;
+
+    private byte[] head = new byte[LEN_OF_MSG_HEAD];
+
+    private byte[] SPS_BUFFER;
+
+    private long count = -1;
+
+    private int lenMsgHead = -1;
+    private int lenMsgData = -1;
+
+    private AESManager mWriteAESManager = new AESManager();
+    private AESManager mReadAESManager = new AESManager();
+
+    private boolean isRunning = false;
+
+    private DecodeUtil() {
+        System.arraycopy(ByteConvert.intToBytes(CommonParams.MSG_CHANNEL_ID_VIDEO), 0, head, 0, 4);
+        byte[] decodeByte = new byte[LEN_OF_FRAME_HEAD + LEN_OF_MSG_HEAD];
+        System.arraycopy(ByteConvert.intToBytes(LEN_OF_MSG_HEAD), 0, decodeByte, 0, LEN_OF_FRAME_HEAD);
+        System.arraycopy(ByteConvert.intToBytes(CarlifePhoneApplication.screenWidth), 0, decodeByte, 4, 4);
+        System.arraycopy(ByteConvert.intToBytes(CarlifePhoneApplication.screenHeight), 0, decodeByte, 8, 4);
+        ConnectManager.getInstance().writeVideoData(decodeByte, decodeByte.length);
+
+        ConnectManager.getInstance().startAudioSocket();
+        AudioPlayerUtil.getInstance().startDecode();
+    }
+
+    public static DecodeUtil getInstance() {
+        if (mInstance == null) {
+            mInstance = new DecodeUtil();
+        }
+        return mInstance;
+    }
+
+    public void startDecode() {
+        isRunning = true;
+        if (decoderThread == null) {
+            decoderThread = new DecoderThread();
+            decoderThread.start();
+        }
+    }
+
+    public void stopDecode() {
+        isRunning = false;
+        decoderThread = null;
+    }
+
+    private class DecoderThread extends Thread {
+
+        @Override
+        public void run() {
+            LogUtil.e(TAG, "START REC VIDEO RUN");
+            byte[] msgHead = new byte[LEN_OF_FRAME_HEAD];
+            while (isRunning) {
+                if (ConnectManager.getInstance().readVideoData(msgHead, msgHead.length) == -1) {
+                    LogUtil.e(TAG, "read data error1");
+                    continue;
+                }
+                lenMsgData = ByteConvert.bytesToInt(msgHead);
+                LogUtil.e(TAG, "lenMsgData " + lenMsgData);
+                byte[] msgData = new byte[lenMsgData];
+                if (ConnectManager.getInstance().readVideoData(msgData, lenMsgData) == -1) {
+                    LogUtil.e(TAG, "read data error2");
+                    continue;
+                }
+                count++;
+                LogUtil.e(TAG, "COUNT " + count);
+                if (count == 0) {
+                    SPS_BUFFER = new byte[lenMsgData];
+                    System.arraycopy(msgData, 0, SPS_BUFFER, 0, lenMsgData);
+                }
+                if (EncryptSetupManager.getInstance().isEncryptEnable()) {
+                    if (count == 1) {
+                        byte[] tempMsgData = new byte[msgData.length];
+                        System.arraycopy(msgData, 0, tempMsgData, 0, msgData.length);
+                        msgData = new byte[SPS_BUFFER.length + msgData.length];
+                        System.arraycopy(SPS_BUFFER, 0, msgData, 0, SPS_BUFFER.length);
+                        System.arraycopy(tempMsgData, 0, msgData, SPS_BUFFER.length, tempMsgData.length);
+                        byte[] encryptData = mWriteAESManager.encrypt(msgData, msgData.length);
+                        if (encryptData.length > msgData.length) {
+                            msgData = new byte[encryptData.length];
+                        }
+                        System.arraycopy(encryptData, 0, msgData, 0, encryptData.length);
+                        lenMsgData = msgData.length;
+                    } else {
+                        byte[] encryptData = mWriteAESManager.encrypt(msgData, msgData.length);
+                        if (encryptData.length > lenMsgData) {
+                            msgData = new byte[encryptData.length];
+                        }
+                        System.arraycopy(encryptData, 0, msgData, 0, encryptData.length);
+                        lenMsgData = msgData.length;
+                    }
+                }
+                lenMsgHead = CommonParams.MSG_VIDEO_HEAD_SIZE_BYTE;
+                byte[] packageData;
+                if (count == 1) {
+                    if (EncryptSetupManager.getInstance().isEncryptEnable()) {
+                        System.arraycopy(ByteConvert.intToBytes(lenMsgHead + lenMsgData), 0, head, 4, 4);
+                        packageData = new byte[lenMsgHead + lenMsgData];
+                        System.arraycopy(ByteConvert.intToBytes(lenMsgData), 0, packageData, 0, 4);
+                        System.arraycopy(ByteConvert.longToBytesLowbyte(System.currentTimeMillis()), 0, packageData, 4, 4);
+                        System.arraycopy(msgData, 0, packageData, lenMsgHead, lenMsgData);
+                    } else {
+                        System.arraycopy(ByteConvert.intToBytes(lenMsgHead + lenMsgData + SPS_BUFFER.length), 0, head, 4, 4);
+                        packageData = new byte[lenMsgHead + lenMsgData + SPS_BUFFER.length];
+                        System.arraycopy(ByteConvert.intToBytes(lenMsgData + SPS_BUFFER.length), 0, packageData, 0, 4);
+                        System.arraycopy(ByteConvert.longToBytesLowbyte(System.currentTimeMillis()), 0, packageData, 4, 4);
+                        System.arraycopy(SPS_BUFFER, 0, packageData, lenMsgHead, SPS_BUFFER.length);
+                        System.arraycopy(msgData, 0, packageData, lenMsgHead + SPS_BUFFER.length, lenMsgData);
+                    }
+                } else {
+                    System.arraycopy(ByteConvert.intToBytes(lenMsgHead + lenMsgData), 0, head, 4, 4);
+                    packageData = new byte[lenMsgHead + lenMsgData];
+                    System.arraycopy(ByteConvert.intToBytes(lenMsgData), 0, packageData, 0, 4);
+                    System.arraycopy(ByteConvert.longToBytesLowbyte(System.currentTimeMillis()), 0, packageData, 4, 4);
+                    System.arraycopy(msgData, 0, packageData, lenMsgHead, lenMsgData);
+                }
+
+                if (count > 0) {
+                    AOAAccessorySetup.getInstance().bulkTransferOut(head, LEN_OF_MSG_HEAD, packageData, packageData.length);
+                }
+            }
+        }
+    }
+}

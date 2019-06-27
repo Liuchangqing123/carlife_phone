@@ -1,0 +1,664 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/select.h>
+#include <sys/time.h>
+#include <sys/types.h>
+#include <sys/select.h>
+#include <net/if.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include "log.h"
+#include "tcpsocket.h"
+#include "hqueue.h"
+
+#define SCREEN_CAPTURE_ENABLE				1
+
+#if SCREEN_CAPTURE_ENABLE
+
+#define LOGT(fmt, args...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, fmt, ##args)
+
+//#define DEBUG_SCREEN                        1
+
+#include <binder/ProcessState.h>
+#include <binder/IServiceManager.h>
+#include <gui/Surface.h>
+#include <gui/SurfaceComposerClient.h>
+#include <gui/ISurfaceComposer.h>
+#include <ui/DisplayInfo.h>
+#include <ui/GraphicBufferMapper.h>
+#include <media/openmax/OMX_IVCommon.h>
+#include <media/stagefright/foundation/ABuffer.h>
+#include <media/stagefright/foundation/ADebug.h>
+#include <media/stagefright/foundation/AMessage.h>
+#include <media/stagefright/MediaCodec.h>
+#include <media/stagefright/MediaErrors.h>
+#include <media/ICrypto.h>
+#include <android/native_window.h>
+#include <sys/system_properties.h>
+
+#define SOCKET_VIDEO_LOCALHOST_PORT 	(8200)
+
+using namespace android;
+
+static int setDisplayProjection(const sp<IBinder>& dpy, const DisplayInfo& mainDpyInfo, int width, int height, Rect& rect);
+
+void *carlife_video_encode_thread(void *arg);
+
+void *carlife_video_send_thread(void *arg);
+
+#endif
+
+typedef struct
+{
+	uint8_t *data;
+	int   size;
+}ST_VIDEO_DATA;
+
+typedef struct
+{
+	HQUEUE *pstVideoQue;
+	int connectSocket;
+}ST_VIDEO_SRV;
+
+
+#if SCREEN_CAPTURE_ENABLE
+struct keeper_info {
+
+	bool is_stop;
+	int screenW, screenH;
+	int width, height, frame_rate;
+};
+
+uint64_t getSystemTimeUs()
+{
+	struct timeval current_time = {0,};
+	gettimeofday(&current_time, NULL);
+	return (current_time.tv_sec * 1000*1000 + current_time.tv_usec);
+}
+
+void *keeper_screen_thread(void *arg)
+{
+	keeper_info* info = (keeper_info*)arg;
+	
+	bool success = false;
+	
+	sp<SurfaceComposerClient> surfaceClient = NULL;
+	sp<SurfaceControl> surfaceControl = NULL;
+	ANativeWindow* nativeWindowKeeper = NULL;
+
+	do
+	{
+		surfaceClient = new SurfaceComposerClient();
+		if(surfaceClient == NULL || surfaceClient->initCheck() != OK)
+		{
+			LOGE("init check failed.");
+			break;
+		}
+
+		surfaceControl = surfaceClient->createSurface(String8("keeper_surface"), info->width, info->height, PIXEL_FORMAT_RGBA_8888, 0);
+  		if(surfaceControl == NULL)
+  		{
+  			LOGE("create keeper surface failed.");
+  			break;
+  		}
+		
+  		SurfaceComposerClient::openGlobalTransaction();
+  		surfaceControl->setLayer(INT_MAX);
+  		surfaceControl->setPosition(8, 8);
+  		surfaceControl->setSize(8, 8);
+  		SurfaceComposerClient::closeGlobalTransaction();
+
+		nativeWindowKeeper = surfaceControl->getSurface().get();
+  		if(NULL == nativeWindowKeeper)
+  		{
+  			LOGE("failed to get surface!");
+  			break;
+  		}
+
+		success = true;
+
+	}while(0);
+
+	if(success)
+	{
+		const uint64_t sync_us = 1000 * 1000 / 25;
+		uint32_t rgb = 0x00000000;
+		
+		while(!info->is_stop)
+		{
+			ANativeWindow_Buffer buf;
+			uint64_t start_us = getSystemTimeUs();
+			uint64_t time_us;
+			
+			int err = ANativeWindow_lock(nativeWindowKeeper, &buf, NULL);
+			if(0 == err)
+			{
+				uint32_t *dst = (uint32_t *)buf.bits;
+				int s = buf.stride;
+				int w = buf.width;
+				int h = buf.height;
+				
+				if(0x00010101 == rgb)
+				{
+					rgb = 0x00000000;
+				}
+				else
+				{
+					rgb = 0x00010101;
+				}
+				
+				for(int j = 0; j < h; j++)
+				{
+					for(int i = 0; i < w; i++)
+					{
+							*dst++ = rgb;
+					}
+					
+					dst += (s - w);
+				}
+				
+				ANativeWindow_unlockAndPost(nativeWindowKeeper);
+			}
+
+			time_us = getSystemTimeUs() - start_us;
+
+			if(time_us < sync_us)
+			{
+				usleep(sync_us - time_us);
+			}
+		}
+	}
+	LOGI("airplay_screen_thread keeper_screen_thread end\n");
+	return NULL;
+}
+#endif
+
+void *carlife_creat_video_srv_thread(void *arg)
+{
+	bool isLocal;
+	int err = 0;
+	int sock = 0;
+	int sock_n = 0;
+
+	pthread_t tid_video_encode;
+	pthread_t tid_video_send;
+
+	memset(&tid_video_encode, 0, sizeof(pthread_t));
+	memset(&tid_video_send, 0, sizeof(pthread_t));
+	
+	pthread_detach(pthread_self());
+	
+	ST_VIDEO_SRV *pstCarlifeVideoSrv = NULL;
+	pstCarlifeVideoSrv = (ST_VIDEO_SRV *)malloc(sizeof(ST_VIDEO_SRV));
+	
+	memset(pstCarlifeVideoSrv, 0, sizeof(ST_VIDEO_SRV));
+
+	sock = createServer(SOCKET_VIDEO_LOCALHOST_PORT);
+	if(sock <= 0)
+	{
+		LOGI("carlife_creat_video_srv create server (port:%d) failed!\n", SOCKET_VIDEO_LOCALHOST_PORT);
+		return NULL;
+	}
+
+	sock_n = serverAccept(sock, &isLocal);
+	if(sock_n > 0)
+	{
+		pstCarlifeVideoSrv->pstVideoQue = hqCreate(20, sizeof(ST_VIDEO_DATA), HQ_GET_WAIT | HQ_PUT_WAIT);
+		pstCarlifeVideoSrv->connectSocket = sock_n;
+	
+		err = pthread_create(&tid_video_encode, NULL, carlife_video_encode_thread, pstCarlifeVideoSrv);
+		if(err != 0)
+		{
+			LOGE("carlife_video_encode_thread error\n");
+		}
+		else
+		{
+			LOGE("carlife_video_encode_thread ok\n");
+		}
+
+		err = pthread_create(&tid_video_send, NULL, carlife_video_send_thread, pstCarlifeVideoSrv);
+		if(err != 0)
+		{
+			LOGE("carlife_video_send_thread error\n");
+		}
+		else
+		{
+			LOGE("carlife_video_send_thread ok\n");
+		}
+	}
+
+	if(tid_video_encode)
+	{
+		pthread_join(tid_video_encode, NULL);
+	}
+
+	if(tid_video_send)
+	{
+		pthread_join(tid_video_send, NULL);
+	}
+
+	pthread_exit(0);
+	
+	return NULL;
+}
+
+int carlife_creat_video_srv()
+{
+	pthread_t tid_video_srv = 0;
+
+	int	err = pthread_create(&tid_video_srv, NULL, carlife_creat_video_srv_thread, NULL);
+	if(err != 0)
+	{
+		LOGE("carlife_creat_video_srv error\n");
+	}
+	else
+	{
+		LOGE("carlife_creat_video_srv ok\n");
+	}
+
+	return 0;
+}
+
+void *carlife_video_send_thread(void *arg)
+{
+	char *pcSendBuf = NULL;
+	int SendLen = 0;
+
+	int fIsExit = 0;//TO DO: just for test 2019-04-01
+
+	ST_VIDEO_DATA stVideoQueData = {0};
+
+	ST_VIDEO_SRV *pstCarlifeVideoSrv = NULL;
+	if(NULL != arg)
+	{
+		pstCarlifeVideoSrv = (ST_VIDEO_SRV *)arg;
+	}
+	else
+	{
+		return NULL; 
+	}
+
+	//=====================================================================================================
+	while(1)
+	{
+		if(hqBufIsEmpty(pstCarlifeVideoSrv->pstVideoQue))
+		{
+			usleep(10*1000);
+			continue;
+		}
+
+		memset(&stVideoQueData, 0, sizeof(ST_VIDEO_DATA));
+		if(!hqBufGet(pstCarlifeVideoSrv->pstVideoQue, (char *)&stVideoQueData))
+		{
+			LOGI("hqBufGet failed.\n");
+			usleep(10*1000);
+			continue;
+		}
+
+		if(NULL == stVideoQueData.data)
+			continue;
+
+		pcSendBuf = (char *) stVideoQueData.data;
+		SendLen = htonl(stVideoQueData.size);
+
+		tcp_send_data(pstCarlifeVideoSrv->connectSocket, &SendLen, sizeof(int), fIsExit, 0);
+		LOGE("%s SendLen:%d, %#x\n", __func__, stVideoQueData.size, stVideoQueData.size);
+
+		tcp_send_data(pstCarlifeVideoSrv->connectSocket, pcSendBuf, stVideoQueData.size, fIsExit, 0);
+
+		free(pcSendBuf);
+		pcSendBuf = NULL;
+
+	}
+	//=====================================================================================================
+
+SEND_EXIT:
+
+	closeSocket(pstCarlifeVideoSrv->connectSocket);
+
+	return NULL;
+}
+
+void *carlife_video_encode_thread(void *arg)
+{
+	int err, trycount = 0;
+
+	unsigned int ms = 0,ms1=0,ms2=0;
+	int one_time = 1;
+	struct timeval tv;
+	gettimeofday(&tv, NULL);
+	ms = tv.tv_sec * 1000 + tv.tv_usec/1000;
+
+	ST_VIDEO_SRV *pstCarlifeVideoSrv = NULL;
+	if(NULL != arg)
+	{
+		pstCarlifeVideoSrv = (ST_VIDEO_SRV *)arg;
+	}
+
+
+#if SCREEN_CAPTURE_ENABLE
+	int success = -1;
+	int width = 1024, height = 600, bitrate = 20*1000*1000, framerate = 25, iFrameInterval = 10;
+	int screen_width = 1024, screen_height = 600;
+
+	AString strMimeType = "video/avc";
+	char looper_name[] = "screen_encoder_looper";
+	char consumer_name[] = "ScreenCaptureConsumer";
+	char display_name[] = "ScreenCaptureDisplay";
+
+	sp<IBinder> mainDpy = SurfaceComposerClient::getBuiltInDisplay(ISurfaceComposer::eDisplayIdMain);
+
+	sp<IBinder> dpy = NULL;
+	sp<AMessage> format = new AMessage;
+	sp<ALooper> looper = new ALooper;
+	sp<MediaCodec> codec = NULL;
+	
+	Rect dispRect;
+	DisplayInfo mainDpyInfo;
+	
+	keeper_info keeper = {0,};
+	pthread_t keeper_id = 0;
+
+#ifdef IS_ANDROID_26
+	Vector<sp<MediaCodecBuffer> > mOutBuffers;
+#else
+	Vector<sp<ABuffer> > mOutBuffers;
+#endif
+
+	sp<IGraphicBufferProducer> bufferProducer;
+
+	android::ProcessState::self()->startThreadPool();
+
+	do
+	{
+		LOGD("screen capture %dx%d %dfps ============ zgs mod\n", width, height, framerate);
+
+		err = SurfaceComposerClient::getDisplayInfo(mainDpy, &mainDpyInfo);
+		if(err != NO_ERROR)
+		{
+			LOGE("get display info failed: %d\n", err);
+			break;
+		}
+		LOGD("main display is %dx%d @%.2ffps (orientation=%u)\n", mainDpyInfo.w, mainDpyInfo.h, mainDpyInfo.fps, mainDpyInfo.orientation);
+		screen_height = mainDpyInfo.h;
+		screen_width = mainDpyInfo.w;
+		
+		// Create encoder
+		format->setInt32("width", width);
+		format->setInt32("height", height);
+#if defined(IS_ANDROID_16) || defined(IS_ANDROID_17) || defined(IS_ANDROID_18) || defined(IS_ANDROID_19)
+		format->setString("mime", strMimeType.c_str());
+#else
+    	format->setString("mime", strMimeType);
+#endif
+		format->setInt32("color-format", OMX_COLOR_FormatAndroidOpaque);
+    	format->setInt32("bitrate", bitrate);
+    	format->setFloat("frame-rate", framerate);
+    	format->setInt32("i-frame-interval", iFrameInterval);
+		// bitrate-mode
+		//format->setInt32("bitrate-mode", 0/* CQ:0, VBR:1, CBR:2 */);
+		// latency
+		// profile level
+
+		looper->setName(looper_name);
+		looper->start();
+		
+		codec = MediaCodec::CreateByType(looper, strMimeType.c_str(), true);
+		if(codec == NULL)
+		{
+			LOGE("create encoder failed!\n");
+			break;
+		}
+		
+		err = codec->configure(format, NULL, NULL, MediaCodec::CONFIGURE_FLAG_ENCODE);
+		if(err != NO_ERROR)
+		{
+			LOGE("config encoder failed: %d\n", err);
+			break;
+		}
+	  
+	  	err = codec->createInputSurface(&bufferProducer);
+	    if(err != NO_ERROR)
+	    {
+			LOGE("create input surface failed: %d\n", err);
+			break;
+	    }
+
+    	dpy = SurfaceComposerClient::createDisplay(String8(display_name), false /* secure */);
+		
+		SurfaceComposerClient::openGlobalTransaction();
+		SurfaceComposerClient::setDisplaySurface(dpy, bufferProducer);
+    	setDisplayProjection(dpy, mainDpyInfo, width, height, dispRect);
+    	SurfaceComposerClient::setDisplayLayerStack(dpy, 0);    // default stack
+    	SurfaceComposerClient::closeGlobalTransaction();
+
+		err = codec->start();
+		if(err != NO_ERROR)
+		{
+			LOGE("start encoder failed: %d\n", err);
+			break;
+		}
+		
+		err = codec->getOutputBuffers(&mOutBuffers);
+		if(err != NO_ERROR)
+		{
+			LOGE("get output buffers failed: %d\n", err);
+			break;
+		}
+
+		keeper.screenW = mainDpyInfo.w;
+		keeper.screenH = mainDpyInfo.h;
+		keeper.width = width;
+		keeper.height = height;
+		keeper.frame_rate = framerate;
+		keeper.is_stop = 0;//TO DO: just for test 2019-04-09
+
+		pthread_create(&keeper_id, NULL, keeper_screen_thread, &keeper);
+
+		LOGD("screen capture start success!\n");
+		success = 0;
+		
+	}while(0);
+	
+	if(0 == success)
+	{
+		const int kTimeout = 250 * 1000; // us
+		const int nal_size = 4;
+
+		while(1)
+		{
+			size_t bufIndex, offset, size;
+			int64_t ptsUsec;
+			uint32_t flags;
+			
+			err = codec->dequeueOutputBuffer(&bufIndex, &offset, &size, &ptsUsec, &flags, kTimeout);
+			if(NO_ERROR == err)
+			{
+				const sp<ABuffer> &dstBuffer = mOutBuffers[bufIndex];
+				int length = dstBuffer->size();
+				uint8_t *frame = dstBuffer->data();
+
+//=====================================================================================================
+				ST_VIDEO_DATA stVideoQueData = {0};
+
+				stVideoQueData.data = (uint8_t *) malloc(length);
+				if(NULL == stVideoQueData.data)
+				{
+					LOGI("%s malloc [%d] failed !", __func__, length);
+					break;
+				}
+				
+				memset(stVideoQueData.data, 0, length);
+
+				memcpy(stVideoQueData.data, dstBuffer->data(), length);
+				stVideoQueData.size = length;
+
+				hqBufPut(pstCarlifeVideoSrv->pstVideoQue, (char *)&stVideoQueData);
+//=====================================================================================================
+
+				if((flags & MediaCodec::BUFFER_FLAG_CODECCONFIG) != 0)
+				{
+					LOGI("CodeConfig: length=%d.", length);
+
+				}
+				else
+				{
+					uint8_t type = frame[5] & 0x1F;
+					LOGI("Frame: length=%d. type=%d", length, type);
+				}
+
+				err = codec->releaseOutputBuffer(bufIndex);
+				if(err != NO_ERROR)
+				{
+					LOGE("unable to release output buffer: %d\n", err);
+					break;
+				}
+				
+			}
+			else if(INFO_OUTPUT_BUFFERS_CHANGED == err)
+			{
+				LOGI("output buffers changed\n");
+				err = codec->getOutputBuffers(&mOutBuffers);
+				if(err != NO_ERROR)
+				{
+					LOGE("unable to get new output buffers (err=%d)\n", err);
+					break;
+				}
+			}
+			else if(INFO_FORMAT_CHANGED == err)
+			{
+				LOGI("encoder format changed\n");
+			}
+			else if(INVALID_OPERATION == err)
+			{
+				LOGE("request for encoder buffer failed\n");
+				break;
+			}
+			else if(-EAGAIN == err)
+			{
+				usleep(10*1000);
+			}
+			else
+			{
+				LOGE("got weird result %d from dequeueOutputBuffer\n", err);
+				break;
+			}
+		}
+		
+		LOGD("screen capture is stopping...\n");
+		codec->stop();
+	}
+	
+	if(dpy != NULL)
+	{
+		SurfaceComposerClient::destroyDisplay(dpy);
+		dpy = NULL;
+	}
+
+	if(codec.get() != NULL)
+	{
+			codec->release();
+			codec.clear();
+			codec = NULL;
+	}
+    LOGD("codec cleared.");
+  	
+	LOGI("screen capture is done.\n");
+
+#endif
+
+ENCODE_EXIT:
+	ST_VIDEO_DATA stVideoQueData = {0};
+	hqBufPut(pstCarlifeVideoSrv->pstVideoQue, (char *)&stVideoQueData);
+
+	LOGD("carlife_video_encode_thread exit\n");
+
+	return NULL;
+}
+
+#if SCREEN_CAPTURE_ENABLE
+static bool isDeviceRotated(int orientation) 
+{
+	return orientation != DISPLAY_ORIENTATION_0 && orientation != DISPLAY_ORIENTATION_180;
+}
+
+static int setDisplayProjection(const sp<IBinder>& dpy, const DisplayInfo& mainDpyInfo, int width, int height, Rect& rect)
+{
+    int err;
+
+    // Set the region of the layer stack we're interested in, which in our
+    // case is "all of it".  If the app is rotated (so that the width of the
+    // app is based on the height of the display), reverse width/height.
+    bool deviceRotated = isDeviceRotated(mainDpyInfo.orientation);
+    uint32_t sourceWidth, sourceHeight;
+    if (!deviceRotated) 
+	{
+        sourceWidth = mainDpyInfo.w;
+        sourceHeight = mainDpyInfo.h;
+    } 
+	else 
+	{
+        LOGD("using rotated width/height");
+        sourceHeight = mainDpyInfo.w;
+        sourceWidth = mainDpyInfo.h;
+    }
+    Rect layerStackRect(sourceWidth, sourceHeight);
+
+    // We need to preserve the aspect ratio of the display.
+    float displayAspect = (float) sourceHeight / (float) sourceWidth;
+
+
+    // Set the way we map the output onto the display surface (which will
+    // be e.g. 1280x720 for a 720p video).  The rect is interpreted
+    // post-rotation, so if the display is rotated 90 degrees we need to
+    // "pre-rotate" it by flipping width/height, so that the orientation
+    // adjustment changes it back.
+    //
+    // We might want to encode a portrait display as landscape to use more
+    // of the screen real estate.  (If players respect a 90-degree rotation
+    // hint, we can essentially get a 720x1280 video instead of 1280x720.)
+    // In that case, we swap the configured video width/height and then
+    // supply a rotation value to the display projection.
+    uint32_t videoWidth, videoHeight;
+    uint32_t outWidth, outHeight;
+
+    videoWidth = width;
+    videoHeight = height;
+    
+    if (videoHeight > (uint32_t)(videoWidth * displayAspect)) 
+	{
+        // limited by narrow width; reduce height
+        outWidth = videoWidth;
+        outHeight = (uint32_t)(videoWidth * displayAspect);
+    }
+	else
+	{
+        // limited by short height; restrict width
+        outHeight = videoHeight;
+        outWidth = (uint32_t)(videoHeight / displayAspect);
+    }
+	
+    uint32_t offX, offY;
+    offX = (videoWidth - outWidth) / 2;
+    offY = (videoHeight - outHeight) / 2;
+	
+    Rect displayRect(offX, offY, offX + outWidth, offY + outHeight);
+
+	rect.left = offX;
+	rect.top = offY;
+	rect.right = rect.left + outWidth;
+	rect.bottom = rect.top + outHeight;
+		
+    LOGD("Content area is %ux%u at offset x=%d y=%d", outWidth, outHeight, offX, offY);
+
+    SurfaceComposerClient::setDisplayProjection(dpy,
+            DISPLAY_ORIENTATION_0,
+            layerStackRect, displayRect);
+    return NO_ERROR;
+}
+#endif

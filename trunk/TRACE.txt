@@ -1,0 +1,3 @@
+2019/03/26  xiaojun push CarLife-Android-Vehicle 
+--做了部分修改，车机可直接运行，能连接手机CarLife
+2019/03/26  xiaojun push doc/AOA协商过程.doc

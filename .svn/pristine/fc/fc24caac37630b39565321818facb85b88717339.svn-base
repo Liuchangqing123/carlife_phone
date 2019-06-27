@@ -1,0 +1,76 @@
+package com.didi365.carlife.android.phone;
+
+import android.os.Message;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.SurfaceView;
+import com.camera.CameraSurfaceHolder;
+import com.didi365.carlife.android.phone.connect.AOAConnectManager;
+import com.didi365.carlife.android.phone.connect.ConnectClient;
+import com.didi365.carlife.android.phone.connect.ConnectManager;
+import com.didi365.carlife.android.phone.logic.CarlifeDeviceInfoManager;
+import com.didi365.carlife.android.phone.logic.CarlifeProtocolVersionInfoManager;
+import com.didi365.carlife.android.phone.message.MsgBaseHandler;
+import com.didi365.carlife.android.phone.message.MsgHandlerCenter;
+import com.didi365.carlife.android.phone.util.CarlifeUtil;
+import com.didi365.carlife.android.phone.util.CommonParams;
+import com.didi365.carlife.android.phone.util.DigitalTrans;
+import com.didi365.carlife.android.phone.util.LogUtil;
+
+public class MainActivity extends AppCompatActivity {
+
+    private final String TAG = "AccessoryPhone";
+
+    private SurfaceView surfaceView;
+    private CameraSurfaceHolder mCameraSurfaceHolder = new CameraSurfaceHolder();
+
+    private MsgBaseHandler mMainActivityHandler = null;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        surfaceView = findViewById(R.id.surfaceView);
+        mCameraSurfaceHolder.setCameraSurfaceHolder(MainActivity.this, surfaceView);
+
+        mMainActivityHandler = new MsgMainActivityHandler();
+        MsgHandlerCenter.registerMessageHandler(mMainActivityHandler);
+
+        CarlifeUtil.getInstance().init(this);
+        CarlifeDeviceInfoManager.getInstance().init();
+        CarlifeProtocolVersionInfoManager.getInstance().init();
+        ConnectClient.getInstance().init(this);
+        ConnectManager.getInstance().init(this);
+        AOAConnectManager.getInstance().init(this);
+        ConnectManager.getInstance().startConnectThread("MainActivity onCreate");
+    }
+
+    private class MsgMainActivityHandler extends MsgBaseHandler {
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            LogUtil.d(TAG, "handleMessage get msg: " + DigitalTrans.algorismToHEXString(msg.what, 8));
+            switch (msg.what) {
+                case CommonParams.MSG_CONNECT_STATUS_CONNECTED:
+                    mCameraSurfaceHolder.startCamara();
+                    break;
+                case CommonParams.MSG_CONNECT_STATUS_DISCONNECTED:
+                    mCameraSurfaceHolder.stopCamara();
+                    break;
+            }
+        }
+
+        @Override
+        public void careAbout() {
+            addMsg(CommonParams.MSG_CONNECT_STATUS_CONNECTED);
+            addMsg(CommonParams.MSG_CONNECT_STATUS_DISCONNECTED);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MsgHandlerCenter.unRegisterMessageHandler(mMainActivityHandler);
+    }
+}

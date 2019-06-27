@@ -1,0 +1,68 @@
+/******************************************************************************
+ * Copyright 2017 The Baidu Authors. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *****************************************************************************/
+package com.didi365.carlife.android.phone.encryption;
+
+/**
+ * Created by liucaiquan on 2017/2/21.
+ */
+
+public class EncryptSetupManager {
+    // AES encryption is turned on
+    private Boolean mIsEnableEncryption = false;
+    private static EncryptSetupManager mInstance;
+    private RSAManager mRSAManager = new RSAManager();
+    // The default AES key
+    private String mAESKey = "1234567890123456";
+
+    public static EncryptSetupManager getInstance() {
+        if (mInstance == null) {
+            mInstance = new EncryptSetupManager();
+        }
+
+        return mInstance;
+    }
+
+    public boolean isEncryptEnable() {
+        if (!EncryptConfig.DEBUG_ENABLE) {
+            return false;
+        }
+
+        if (EncryptConfig.AES_ENCRYPT_AS_BEGINE) {
+            return true;
+        }
+        return mIsEnableEncryption;
+    }
+
+    public void setEncryptSwitch(boolean isEnable) {
+        mIsEnableEncryption = isEnable;
+    }
+
+    public String getAesKey() {
+        return mAESKey;
+    }
+
+    public void setAesKey(String key) {
+        mAESKey = key;
+    }
+
+    public void onDisConnection() {
+        setEncryptSwitch(false);
+    }
+
+    private EncryptSetupManager() {
+
+    }
+}

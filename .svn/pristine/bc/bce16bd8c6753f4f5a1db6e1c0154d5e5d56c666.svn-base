@@ -1,0 +1,21 @@
+package com.didi365.carlife.android.phone;
+
+import android.app.Application;
+import com.didi365.carlife.android.phone.util.CarlifeUtil;
+import com.didi365.carlife.android.phone.util.CommonParams;
+import com.didi365.carlife.android.phone.util.LogUtil;
+
+/**
+ * Created by zheng on 2019/4/1
+ */
+public class CarlifePhoneApplication extends Application {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+//        CarlifeUtil.getInstance().init(getApplicationContext());
+//        CommonParams.SD_DIR = "/sdcard" + "/" + CommonParams.SD_DIR_NAME;
+//        LogUtil.e("CarlifePhoneApplication", CommonParams.SD_DIR);
+//        CrashHandler.getInstance().init(getApplicationContext());
+    }
+}

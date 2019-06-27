@@ -1,0 +1,444 @@
+[
+    {
+        "outputFile": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-hdpi-v4\\values-hdpi-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 56,
+                    "endOffset": 107
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 21,
+                        "startColumn": 4,
+                        "startOffset": 932,
+                        "endColumn": 56,
+                        "endOffset": 984
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 112,
+                    "endColumn": 54,
+                    "endOffset": 162
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 22,
+                        "startColumn": 4,
+                        "startOffset": 990,
+                        "endColumn": 54,
+                        "endOffset": 1040
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 167,
+                    "endColumn": 47,
+                    "endOffset": 210
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 32,
+                        "startColumn": 4,
+                        "startOffset": 1506,
+                        "endColumn": 47,
+                        "endOffset": 1549
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 215,
+                    "endColumn": 47,
+                    "endOffset": 258
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 31,
+                        "startColumn": 4,
+                        "startOffset": 1457,
+                        "endColumn": 47,
+                        "endOffset": 1500
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 263,
+                    "endColumn": 53,
+                    "endOffset": 312
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 23,
+                        "startColumn": 4,
+                        "startOffset": 1046,
+                        "endColumn": 53,
+                        "endOffset": 1095
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 317,
+                    "endColumn": 51,
+                    "endOffset": 364
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 37,
+                        "startColumn": 4,
+                        "startOffset": 1709,
+                        "endColumn": 51,
+                        "endOffset": 1756
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 8,
+                    "startColumn": 4,
+                    "startOffset": 369,
+                    "endColumn": 55,
+                    "endOffset": 420
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 34,
+                        "startColumn": 4,
+                        "startOffset": 1557,
+                        "endColumn": 55,
+                        "endOffset": 1608
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 9,
+                    "startColumn": 4,
+                    "startOffset": 425,
+                    "endColumn": 45,
+                    "endOffset": 466
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 36,
+                        "startColumn": 4,
+                        "startOffset": 1662,
+                        "endColumn": 45,
+                        "endOffset": 1703
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 471,
+                    "endColumn": 46,
+                    "endOffset": 513
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 35,
+                        "startColumn": 4,
+                        "startOffset": 1614,
+                        "endColumn": 46,
+                        "endOffset": 1656
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 518,
+                    "endColumn": 51,
+                    "endOffset": 565
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 29,
+                        "startColumn": 4,
+                        "startOffset": 1352,
+                        "endColumn": 51,
+                        "endOffset": 1399
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 570,
+                    "endColumn": 50,
+                    "endOffset": 616
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 30,
+                        "startColumn": 4,
+                        "startOffset": 1405,
+                        "endColumn": 50,
+                        "endOffset": 1451
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 621,
+                    "endColumn": 50,
+                    "endOffset": 667
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 28,
+                        "startColumn": 4,
+                        "startOffset": 1300,
+                        "endColumn": 50,
+                        "endOffset": 1346
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 672,
+                    "endColumn": 48,
+                    "endOffset": 716
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 25,
+                        "startColumn": 4,
+                        "startOffset": 1150,
+                        "endColumn": 48,
+                        "endOffset": 1194
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 15,
+                    "startColumn": 4,
+                    "startOffset": 721,
+                    "endColumn": 49,
+                    "endOffset": 766
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 26,
+                        "startColumn": 4,
+                        "startOffset": 1200,
+                        "endColumn": 49,
+                        "endOffset": 1245
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 771,
+                    "endColumn": 47,
+                    "endOffset": 814
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 27,
+                        "startColumn": 4,
+                        "startOffset": 1251,
+                        "endColumn": 47,
+                        "endOffset": 1294
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 17,
+                    "startColumn": 4,
+                    "startOffset": 819,
+                    "endColumn": 54,
+                    "endOffset": 869
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 43,
+                        "startColumn": 4,
+                        "startOffset": 1930,
+                        "endColumn": 54,
+                        "endOffset": 1980
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 18,
+                    "startColumn": 4,
+                    "startOffset": 874,
+                    "endColumn": 54,
+                    "endOffset": 924
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 42,
+                        "startColumn": 4,
+                        "startOffset": 1874,
+                        "endColumn": 54,
+                        "endOffset": 1924
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 19,
+                    "startColumn": 4,
+                    "startOffset": 929,
+                    "endColumn": 44,
+                    "endOffset": 969
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 46,
+                        "startColumn": 4,
+                        "startOffset": 2085,
+                        "endColumn": 44,
+                        "endOffset": 2125
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 974,
+                    "endColumn": 47,
+                    "endOffset": 1017
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 44,
+                        "startColumn": 4,
+                        "startOffset": 1986,
+                        "endColumn": 47,
+                        "endOffset": 2029
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 21,
+                    "startColumn": 4,
+                    "startOffset": 1022,
+                    "endColumn": 48,
+                    "endOffset": 1066
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 45,
+                        "startColumn": 4,
+                        "startOffset": 2035,
+                        "endColumn": 48,
+                        "endOffset": 2079
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 1071,
+                    "endColumn": 41,
+                    "endOffset": 1108
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 41,
+                        "startColumn": 4,
+                        "startOffset": 1831,
+                        "endColumn": 41,
+                        "endOffset": 1868
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 23,
+                    "startColumn": 4,
+                    "startOffset": 1113,
+                    "endColumn": 41,
+                    "endOffset": 1150
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 40,
+                        "startColumn": 4,
+                        "startOffset": 1788,
+                        "endColumn": 41,
+                        "endOffset": 1825
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 24,
+                    "startColumn": 4,
+                    "startOffset": 1155,
+                    "endColumn": 47,
+                    "endOffset": 1198
+                },
+                "from": {
+                    "file": "E:\\workspace\\carlife_phone\\trunk\\CarLife-Android-Vehicle\\res\\values-hdpi\\dimens.xml",
+                    "position": {
+                        "startLine": 24,
+                        "startColumn": 4,
+                        "startOffset": 1101,
+                        "endColumn": 47,
+                        "endOffset": 1144
+                    }
+                }
+            }
+        ]
+    }
+]

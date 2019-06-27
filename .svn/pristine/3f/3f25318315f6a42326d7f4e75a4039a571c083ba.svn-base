@@ -1,0 +1,89 @@
+/******************************************************************************
+ * Copyright 2017 The Baidu Authors. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *****************************************************************************/
+package com.didi365.carlife.android.phone.logic;
+
+import com.baidu.carlife.protobuf.CarlifeProtocolVersionMatchStatusProto;
+import com.baidu.carlife.protobuf.CarlifeProtocolVersionProto;
+import com.didi365.carlife.android.phone.connect.AOAConnectManager;
+import com.didi365.carlife.android.phone.connect.CarlifeCmdMessage;
+import com.didi365.carlife.android.phone.util.CommonParams;
+import com.didi365.carlife.android.phone.util.LogUtil;
+
+public class CarlifeProtocolVersionInfoManager {
+
+    public static final String TAG = "CarlifeProtocolInfoManager";
+
+    private static CarlifeProtocolVersionInfoManager mInstance = null;
+    private static CarlifeProtocolVersionProto.CarlifeProtocolVersion mMdProtocolVersion = null;
+    private static CarlifeProtocolVersionProto.CarlifeProtocolVersion mHuProtocolVersion = null;
+    private static CarlifeProtocolVersionMatchStatusProto.CarlifeProtocolVersionMatchStatus mProtocolMatchStatus = null;
+
+    private CarlifeProtocolVersionInfoManager() {
+
+    }
+
+    public static CarlifeProtocolVersionInfoManager getInstance() {
+        if (null == mInstance) {
+            synchronized (CarlifeProtocolVersionInfoManager.class) {
+                if (null == mInstance) {
+                    mInstance = new CarlifeProtocolVersionInfoManager();
+                }
+            }
+        }
+        return mInstance;
+    }
+
+    public void init() {
+        CarlifeProtocolVersionProto.CarlifeProtocolVersion.Builder builder = CarlifeProtocolVersionProto.CarlifeProtocolVersion.newBuilder();
+        builder.setMajorVersion(CommonParams.PROTOCOL_VERSION_MAJOR_VERSION);
+        builder.setMinorVersion(CommonParams.PROTOCOL_VERSION_MINOR_VERSION);
+
+        mHuProtocolVersion = builder.build();
+    }
+
+    public CarlifeProtocolVersionProto.CarlifeProtocolVersion getHuProtocolVersion() {
+        return mHuProtocolVersion;
+    }
+
+    public void setMdProtocolVersion(CarlifeProtocolVersionProto.CarlifeProtocolVersion info) {
+        mMdProtocolVersion = info;
+    }
+
+    public CarlifeProtocolVersionProto.CarlifeProtocolVersion getMdProtocolVersion() {
+        return mMdProtocolVersion;
+    }
+
+    public void setProtocolMatchStatus(CarlifeProtocolVersionMatchStatusProto.CarlifeProtocolVersionMatchStatus info) {
+        mProtocolMatchStatus = info;
+    }
+
+    public CarlifeProtocolVersionMatchStatusProto.CarlifeProtocolVersionMatchStatus getProtocolMatchStatus() {
+        return mProtocolMatchStatus;
+    }
+
+    public void sendProtocolMatchStatus() {
+        try {
+            CarlifeCmdMessage protocolM = new CarlifeCmdMessage(true);
+            protocolM.setServiceType(CommonParams.MSG_CMD_PROTOCOL_VERSION_MATCH_STATUS);
+            protocolM.setData(mProtocolMatchStatus.toByteArray());
+            protocolM.setLength(mProtocolMatchStatus.getSerializedSize());
+            AOAConnectManager.getInstance().writeCarlifeCmdMessage(protocolM);
+        } catch (Exception ex) {
+            LogUtil.e(TAG, "sendProtocolMatchStatus fail " + ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+}

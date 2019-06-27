@@ -1,0 +1,3 @@
+# view AndroidManifest.xml #generated:43
+-keep class com.baidu.carlifevehicle.CarLifeApplication { <init>(...); }
+

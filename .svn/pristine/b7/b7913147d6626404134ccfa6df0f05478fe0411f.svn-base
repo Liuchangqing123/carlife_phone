@@ -1,0 +1,94 @@
+[
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\frag_incall.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\frag_incall.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\frag_usb_help.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\frag_usb_help.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\layout_progress_bar.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\layout_progress_bar.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\frag_touch.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\frag_touch.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\dialog_carlife_message.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\dialog_carlife_message.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\control_test_window.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\control_test_window.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\frag_authorization_request_help.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\frag_authorization_request_help.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\frag_launch.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\frag_launch.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\frag_help_apple.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\frag_help_apple.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\frag_main.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\frag_main.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\frag_help_main.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\frag_help_main.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\frag_wifi_help.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\frag_wifi_help.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\frag_help_android.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\frag_help_android.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\frag_ncm_help.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\frag_ncm_help.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\layout_carlife_round_progress.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\layout_carlife_round_progress.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\carlife_common_title_bar_new.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\carlife_common_title_bar_new.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\frag_exception.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\frag_exception.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\frag_setting.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\frag_setting.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\list_item_setting.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\list_item_setting.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\dialog_carlife.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\dialog_carlife.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\frag_setting_about.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\frag_setting_about.xml"
+    },
+    {
+        "merged": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_user_guide.xml",
+        "source": "F:\\project\\apollo-DuerOS\\CarLife-Android-Vehicle\\res\\layout\\fragment_user_guide.xml"
+    }
+]
