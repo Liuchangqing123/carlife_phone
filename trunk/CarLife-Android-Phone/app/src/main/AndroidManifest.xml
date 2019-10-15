@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.baidu.carlife">
+    package="com.didi365.carlife">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-feature android:name="android.hardware.usb.accessory" />
@@ -16,7 +16,7 @@
     <uses-feature android:name="android.hardware.camera" android:required="false" />
 
     <application
-        android:name=".CarlifePhoneApplication"
+        android:name="com.didi365.carlife.CarlifePhoneApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".CarlifeActivity"
+        <activity android:name="com.didi365.carlife.CarlifeActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTask">
             <intent-filter>
@@ -41,7 +41,7 @@
                 android:resource="@xml/accessory_filter" />
         </activity>
 
-        <service android:name=".connect.ConnectService" />
+        <service android:name="com.didi365.carlife.connect.ConnectService" />
 
     </application>
 

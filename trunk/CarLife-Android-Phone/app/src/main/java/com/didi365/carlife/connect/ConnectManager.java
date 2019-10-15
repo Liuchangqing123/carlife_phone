@@ -1,0 +1,429 @@
+package com.didi365.carlife.connect;
+
+import android.content.Context;
+import android.view.MotionEvent;
+
+import com.baidu.carlife.protobuf.CarlifeTouchActionProto.CarlifeTouchAction;
+import com.baidu.carlife.protobuf.CarlifeTouchSinglePointProto.CarlifeTouchSinglePoint;
+import com.baidu.carlife.protobuf.CarlifeCarHardKeyCodeProto.CarlifeCarHardKeyCode;
+import com.didi365.carlife.encryption.EncryptSetupManager;
+import com.didi365.carlife.message.MsgHandlerCenter;
+import com.didi365.carlife.util.ByteConvert;
+import com.didi365.carlife.CommonParams;
+import com.didi365.carlife.util.DigitalTrans;
+import com.didi365.carlife.util.LogUtil;
+import com.didi365.carlife.util.TouchUtil;
+import com.google.protobuf.InvalidProtocolBufferException;
+
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.Socket;
+
+/**
+ * Created by zheng on 2019/3/29
+ */
+public class ConnectManager {
+
+    private final String TAG = ConnectManager.class.getSimpleName();
+
+    private Context mContext = null;
+    private static ConnectManager mInstance = null;
+
+    public static final int CONNECTED_BY_AOA = 0x0002;
+    public static final int CONNECTED_BY_NCM_ANDROID = 0x0003;
+    public static final int CONNECTED_BY_NCM_IOS = 0x0004;
+    public static final int CONNECTED_BY_WIFI = 0x0005;
+    public static final int CONNECTED_BY_USB_TETHERING = 0x0006;
+    public static final int CONNECTED_BY_EAN = 0x0007;
+    public static final int CONNECTED_BY_ANDROID_DEBUG = 0x0008;
+
+    public static int CONNECTED_TYPE = CONNECTED_BY_AOA;
+
+    public static String SERVER_URL = null;
+    public static int SERVER_SOCKET_PORT = -1;
+    public static int SERVER_SOCKET_VIDEO_PORT = -1;
+    public static int SERVER_SOCKET_AUDIO_PORT = -1;
+    public static int SERVER_SOCKET_AUDIO_TTS_PORT = -1;
+    public static int SERVER_SOCKET_AUDIO_VR_PORT = -1;
+    public static int SERVER_SOCKET_TOUCH_PORT = -1;
+    public static int SERVER_SOCKET_ANDROID_DEBUG_PORT = -1;
+    public static int SERVER_SOCKET_ANDROID_DEBUG_VIDEO_PORT = -1;
+    private ConnectSocket mConnectSocket = null;
+    private ConnectSocket mVideoConnectSocket = null;
+    private ConnectSocket mAudioConnectSocket = null;
+    private ConnectSocket mAudioTTSConnectSocket = null;
+    private ConnectSocket mAudioVRConnectSocket = null;
+    private ConnectSocket mTouchConnectSocket = null;
+    private ConnectSocket mAndroidDebugConnectSocket = null;
+    private ConnectSocket mAndroidDebugVideoConnectSocket = null;
+
+    private boolean isProtocolVersionMatch = false;
+
+    public static ConnectManager getInstance() {
+        if (null == mInstance) {
+            synchronized (ConnectManager.class) {
+                if (null == mInstance) {
+                    mInstance = new ConnectManager();
+                }
+            }
+        }
+        return mInstance;
+    }
+
+    private ConnectManager() {
+    }
+
+    public void init(Context context) {
+        mContext = context;
+
+        SERVER_URL = CommonParams.SERVER_LOCALHOST_URL;
+        SERVER_SOCKET_PORT = CommonParams.SOCKET_LOCALHOST_PORT;
+        SERVER_SOCKET_VIDEO_PORT = CommonParams.SOCKET_VIDEO_LOCALHOST_PORT;
+        SERVER_SOCKET_AUDIO_PORT = CommonParams.SOCKET_AUDIO_LOCALHOST_PORT;
+        SERVER_SOCKET_AUDIO_TTS_PORT = CommonParams.SOCKET_AUDIO_TTS_LOCALHOST_PORT;
+        SERVER_SOCKET_AUDIO_VR_PORT = CommonParams.SOCKET_AUDIO_VR_LOCALHOST_PORT;
+        SERVER_SOCKET_TOUCH_PORT = CommonParams.SOCKET_TOUCH_LOCALHOST_PORT;
+        SERVER_SOCKET_ANDROID_DEBUG_PORT = CommonParams.SOCKET_ANDROID_DEBUG_LOCAL_PORT;
+        SERVER_SOCKET_ANDROID_DEBUG_VIDEO_PORT = CommonParams.SOCKET_ANDROID_DEBUG_VIDEO_PORT;
+    }
+
+    public int getConnectType() {
+        return CONNECTED_TYPE;
+    }
+
+    public void initConnectType(int type) {
+        LogUtil.d(TAG, "initConnectType");
+        CONNECTED_TYPE = type;
+        LogUtil.e(TAG, "Current Connect Type: " + CONNECTED_TYPE);
+        LogUtil.e(TAG, "Current Server IP：" + SERVER_URL);
+    }
+
+    public void startConnectThread(String from) {
+        LogUtil.e(TAG, "startConnectThread " + from);
+        AOAConnectManager.getInstance().startAOAConnectThread();
+//        AndroidDebugConnect.getInstance().startSocketReadThread();
+    }
+
+    public void stopConnectThread() {
+        LogUtil.e(TAG, "stopConnectThread");
+        AOAConnectManager.getInstance().stopAOAConnectThread();
+        AOAConnectManager.getInstance().unInit();
+        EncryptSetupManager.getInstance().onDisConnection();
+        MsgHandlerCenter.dispatchMessage(CommonParams.MSG_CONNECT_STATUS_DISCONNECTED);
+    }
+
+    public void startConnectSocket() {
+        connectSocket(SERVER_SOCKET_PORT, CommonParams.SERVER_SOCKET_NAME);
+        connectSocket(SERVER_SOCKET_VIDEO_PORT, CommonParams.SERVER_SOCKET_VIDEO_NAME);
+        connectSocket(SERVER_SOCKET_TOUCH_PORT, CommonParams.SERVER_SOCKET_TOUCH_NAME);
+        connectSocket(SERVER_SOCKET_AUDIO_VR_PORT, CommonParams.SERVER_SOCKET_AUDIO_VR_NAME);
+
+        connectSocket(SERVER_SOCKET_ANDROID_DEBUG_PORT, CommonParams.SERVER_SOCKET_ANDROID_DEBUG_NAME);
+//        connectSocket(SERVER_SOCKET_ANDROID_DEBUG_VIDEO_PORT, CommonParams.SERVER_SOCKET_ANDROID_DEBUG_VIDEO);
+    }
+
+    private void connectSocket(int port, String name) {
+        try {
+            InetAddress serveraddr = InetAddress.getByName(SERVER_URL);
+            Socket socket = new Socket(serveraddr, port);
+            if (null != socket) {
+                LogUtil.d(TAG, "Connected to: " + socket.toString() + name);
+                ConnectSocket connectSocket = new ConnectSocket(name, socket);
+                connectSocket.startConmunication();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            LogUtil.d(TAG, String.format("Connected to failed name:%s name:%s reason:%s", name, e != null ? e.getMessage() : ""));
+        } catch (Exception e) {
+            LogUtil.d(TAG, String.format("Connected to failed name:%s name:%s reason:%s", name, e != null ? e.getMessage() : ""));
+        }
+    }
+
+    public void startAudioSocket() {
+        connectSocket(SERVER_SOCKET_AUDIO_PORT, CommonParams.SERVER_SOCKET_AUDIO_NAME);
+    }
+
+    public void stopAllConnectSocket() {
+        isProtocolVersionMatch = false;
+        try {
+            if (mConnectSocket != null) {
+                mConnectSocket.stopConnunication();
+                mConnectSocket = null;
+            }
+            if (mVideoConnectSocket != null) {
+                mVideoConnectSocket.stopConnunication();
+                mVideoConnectSocket = null;
+            }
+            if (mAudioConnectSocket != null) {
+                mAudioConnectSocket.stopConnunication();
+                mAudioConnectSocket = null;
+            }
+            if (mAudioTTSConnectSocket != null) {
+                mAudioTTSConnectSocket.stopConnunication();
+                mAudioTTSConnectSocket = null;
+            }
+            if (mAudioVRConnectSocket != null) {
+                mAudioVRConnectSocket.stopConnunication();
+                mAudioVRConnectSocket = null;
+            }
+            if (mTouchConnectSocket != null) {
+                mTouchConnectSocket.stopConnunication();
+                mTouchConnectSocket = null;
+            }
+        } catch (Exception e) {
+            LogUtil.e(TAG, "stop ConnectSocket fail");
+            e.printStackTrace();
+        }
+    }
+
+    public synchronized void addConnectSocket(ConnectSocket connectSocket) {
+        try {
+            if (connectSocket.getConnectSocketName().equals(CommonParams.SERVER_SOCKET_NAME)) {
+                mConnectSocket = connectSocket;
+            } else if (connectSocket.getConnectSocketName().equals(CommonParams.SERVER_SOCKET_VIDEO_NAME)) {
+                mVideoConnectSocket = connectSocket;
+            } else if (connectSocket.getConnectSocketName().equals(CommonParams.SERVER_SOCKET_AUDIO_NAME)) {
+                mAudioConnectSocket = connectSocket;
+            } else if (connectSocket.getConnectSocketName().equals(CommonParams.SERVER_SOCKET_AUDIO_TTS_NAME)) {
+                mAudioTTSConnectSocket = connectSocket;
+            } else if (connectSocket.getConnectSocketName().equals(CommonParams.SERVER_SOCKET_AUDIO_VR_NAME)) {
+                mAudioVRConnectSocket = connectSocket;
+            } else if (connectSocket.getConnectSocketName().equals(CommonParams.SERVER_SOCKET_TOUCH_NAME)) {
+                mTouchConnectSocket = connectSocket;
+            } else if (connectSocket.getConnectSocketName().equals(CommonParams.SERVER_SOCKET_ANDROID_DEBUG_NAME)) {
+                mAndroidDebugConnectSocket = connectSocket;
+            } else if (connectSocket.getConnectSocketName().equals(CommonParams.SERVER_SOCKET_ANDROID_DEBUG_VIDEO)) {
+                mAndroidDebugVideoConnectSocket = connectSocket;
+            }
+        } catch (Exception e) {
+            LogUtil.e(TAG, "add ConnectSocket fail");
+            e.printStackTrace();
+        }
+    }
+
+    public boolean getIsProtocolVersionMatch() {
+        return isProtocolVersionMatch;
+    }
+
+    public void setIsProtocolVersionMatch(boolean is) {
+        isProtocolVersionMatch = is;
+    }
+
+    public int writeCmdData(byte[] buffer, int len) {
+        if (null == mConnectSocket) {
+            LogUtil.e(TAG, "write error: connectSocket is null");
+            return -1;
+        }
+        return mConnectSocket.writeData(buffer, len);
+    }
+
+    public int writeVideoData(byte[] buffer, int len) {
+        LogUtil.e(TAG, "writeVideoData " + len);
+        if (null == mVideoConnectSocket) {
+            LogUtil.e(TAG, "write error: video connectSocket is null");
+            return -1;
+        }
+        return mVideoConnectSocket.writeData(buffer, len);
+    }
+
+    public int readVideoData(byte[] buffer, int off, int len) {
+        if (null == mVideoConnectSocket) {
+            LogUtil.e(TAG, "read error: video connectSocket is null");
+            return -1;
+        }
+        return mVideoConnectSocket.readData(buffer, off, len);
+    }
+
+    public int writeAudioData(byte[] buffer, int len) {
+        if (null == mAudioConnectSocket) {
+            LogUtil.e(TAG, "write error: audio connectSocket is null");
+            return -1;
+        }
+        return mAudioConnectSocket.writeData(buffer, len);
+    }
+
+    public int readAudioData(byte[] buffer, int off, int len) {
+        if (null == mAudioConnectSocket) {
+            LogUtil.e("AudioPlayerUtil", "read error: audio connectSocket is null");
+            return -1;
+        }
+        return mAudioConnectSocket.readData(buffer, off, len);
+    }
+
+    public int writeAudioTTSData(byte[] buffer, int len) {
+        if (null == mAudioTTSConnectSocket) {
+            LogUtil.e(TAG, "write error: tts connectSocket is null");
+            return -1;
+        }
+        return mAudioTTSConnectSocket.writeData(buffer, len);
+    }
+
+    public int readAudioTTSData(byte[] buffer, int len) {
+        if (null == mAudioTTSConnectSocket) {
+            LogUtil.e(TAG, "read error: tts connectSocket is null");
+            return -1;
+        }
+        return mAudioTTSConnectSocket.readData(buffer, len);
+    }
+
+    public int writeAudioVRData(byte[] buffer, int len) {
+        if (null == mAudioVRConnectSocket) {
+            LogUtil.e(TAG, "write error: VR connectSocket is null");
+            return -1;
+        }
+        return mAudioVRConnectSocket.writeData(buffer, len);
+    }
+
+    public int readAudioVRData(byte[] buffer, int len) {
+        if (null == mAudioVRConnectSocket) {
+            LogUtil.e(TAG, "read error: VR connectSocket is null");
+            return -1;
+        }
+        return mAudioVRConnectSocket.readData(buffer, len);
+    }
+
+    public int writeAndroidDebugData(byte[] buffer, int len) {
+        if (null == mAndroidDebugConnectSocket) {
+            LogUtil.e(TAG, "write error: AndroidDebug connectSocket is null");
+            return -1;
+        }
+        CarlifeCmdMessage carlifeMsg = new CarlifeCmdMessage(false);
+        carlifeMsg.fromByteArray(buffer, buffer.length);
+        DigitalTrans.dumpData(TAG, "AndroidDebug CarlifeMsg RECV", carlifeMsg, false);
+        return mAndroidDebugConnectSocket.writeData(buffer, len);
+    }
+
+    private int carlifeTouchSingleClickMessage(CarlifeCmdMessage msg, int action) {
+        try {
+            CarlifeTouchSinglePoint SingleClickPoint = CarlifeTouchSinglePoint.parseFrom(msg.getData());
+            LogUtil.d(TAG, "SingleClickPoint " + SingleClickPoint);
+            MotionEvent motionEvent = MotionEvent.obtain(0, 0, action, SingleClickPoint.getX(), SingleClickPoint.getY(), 0);
+            byte[] serializable = TouchUtil.eventToSerializable(motionEvent);
+            byte[] touchMsgByte = new byte[serializable.length + 4];
+            System.arraycopy((ByteConvert.intoByteLow(serializable.length)), 0, touchMsgByte, 0, 4);
+            System.arraycopy(serializable, 0, touchMsgByte, 4, serializable.length);
+            return mTouchConnectSocket.writeData(touchMsgByte, touchMsgByte.length);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    private int carlifeTouchActionMessage(CarlifeCmdMessage msg) {
+        try {
+            CarlifeTouchAction touchAction = CarlifeTouchAction.parseFrom(msg.getData());
+            LogUtil.d(TAG, "touchAction " + touchAction);
+            MotionEvent motionEvent = MotionEvent.obtain(0, 0, touchAction.getAction(), touchAction.getX(), touchAction.getY(), 0);
+            byte[] serializable = TouchUtil.eventToSerializable(motionEvent);
+            byte[] touchMsgByte = new byte[serializable.length + 4];
+            System.arraycopy((ByteConvert.intoByteLow(serializable.length)), 0, touchMsgByte, 0, 4);
+            System.arraycopy(serializable, 0, touchMsgByte, 4, serializable.length);
+            return mTouchConnectSocket.writeData(touchMsgByte, touchMsgByte.length);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+            LogUtil.e(TAG, e.getMessage());
+        }
+        return 0;
+    }
+
+    private int carlifeDownActionMessage(CarlifeCmdMessage msg) {
+        try {
+            CarlifeTouchSinglePoint downSinglePoint = CarlifeTouchSinglePoint.parseFrom(msg.getData());
+            LogUtil.d(TAG, "downSinglePoint " + downSinglePoint);
+            MotionEvent motionEvent = MotionEvent.obtain(0, 0, 0, downSinglePoint.getX(), downSinglePoint.getY(), 0);
+            byte[] serializable = TouchUtil.eventToSerializable(motionEvent);
+            byte[] touchMsgByte = new byte[serializable.length + 4];
+            System.arraycopy((ByteConvert.intoByteLow(serializable.length)), 0, touchMsgByte, 0, 4);
+            System.arraycopy(serializable, 0, touchMsgByte, 4, serializable.length);
+            return mTouchConnectSocket.writeData(touchMsgByte, touchMsgByte.length);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    private int carlifeUpActionMessage(CarlifeCmdMessage msg) {
+        try {
+            CarlifeTouchSinglePoint upSinglePoint = CarlifeTouchSinglePoint.parseFrom(msg.getData());
+            LogUtil.d(TAG, "upSinglePoint " + upSinglePoint);
+            MotionEvent motionEvent = MotionEvent.obtain(0, 0, 1, upSinglePoint.getX(), upSinglePoint.getY(), 0);
+            byte[] serializable = TouchUtil.eventToSerializable(motionEvent);
+            byte[] touchMsgByte = new byte[serializable.length + 4];
+            System.arraycopy((ByteConvert.intoByteLow(serializable.length)), 0, touchMsgByte, 0, 4);
+            System.arraycopy(serializable, 0, touchMsgByte, 4, serializable.length);
+            return mTouchConnectSocket.writeData(touchMsgByte, touchMsgByte.length);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    private int carlifeMoveActionMessage(CarlifeCmdMessage msg) {
+        try {
+            CarlifeTouchSinglePoint moveSinglePoint = CarlifeTouchSinglePoint.parseFrom(msg.getData());
+            LogUtil.d(TAG, "moveSinglePoint " + moveSinglePoint);
+            MotionEvent motionEvent = MotionEvent.obtain(0, 0, 2, moveSinglePoint.getX(), moveSinglePoint.getY(), 0);
+            byte[] serializable = TouchUtil.eventToSerializable(motionEvent);
+            byte[] touchMsgByte = new byte[serializable.length + 4];
+            System.arraycopy((ByteConvert.intoByteLow(serializable.length)), 0, touchMsgByte, 0, 4);
+            System.arraycopy(serializable, 0, touchMsgByte, 4, serializable.length);
+            return mTouchConnectSocket.writeData(touchMsgByte, touchMsgByte.length);
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    private int carlifeHardKeyMessage(CarlifeCmdMessage msg) {
+        try {
+            CarlifeCarHardKeyCode hardKeyCode = CarlifeCarHardKeyCode.parseFrom(msg.getData());
+            LogUtil.d(TAG, "carlifeHardKeyMessage hardKeyCode " + hardKeyCode);
+            int keycode = hardKeyCode.getKeycode();
+            switch (keycode) {
+                case CommonParams.KEYCODE_VR_START:
+                    break;
+                case CommonParams.KEYCODE_VR_STOP:
+                    break;
+            }
+            return keycode;
+        } catch (InvalidProtocolBufferException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int writeCarlifeTouchMessage(CarlifeCmdMessage msg) {
+        if (null == mTouchConnectSocket) {
+            LogUtil.e(TAG, "write error: touch connectSocket is null");
+            return -1;
+        }
+        switch (msg.getServiceType()) {
+            case CommonParams.MSG_TOUCH_ACTION:
+                carlifeTouchActionMessage(msg);
+                break;
+            case CommonParams.MSG_TOUCH_ACTION_DOWN:
+                carlifeDownActionMessage(msg);
+                break;
+            case CommonParams.MSG_TOUCH_ACTION_BEGIN:
+                break;
+            case CommonParams.MSG_TOUCH_ACTION_UP:
+                carlifeUpActionMessage(msg);
+                break;
+            case CommonParams.MSG_TOUCH_ACTION_MOVE:
+                carlifeMoveActionMessage(msg);
+                break;
+            case CommonParams.MSG_TOUCH_SINGLE_CLICK:
+                carlifeTouchSingleClickMessage(msg, 0);
+                carlifeTouchSingleClickMessage(msg, 1);
+                break;
+            case CommonParams.MSG_TOUCH_DOUBLE_CLICK:
+                break;
+            case CommonParams.MSG_TOUCH_LONG_PRESS:
+                break;
+            case CommonParams.MSG_TOUCH_CAR_HARD_KEY_CODE:
+                carlifeHardKeyMessage(msg);
+                break;
+        }
+        return -1;
+    }
+}
